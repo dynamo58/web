@@ -24,6 +24,6 @@ async function spawnNotification(severity, message) {
 async function copyToClipboard(str, customNotiMsg) {
   await navigator.clipboard.writeText(str);
 
-  const msg = customNotiMsg ? customNotiMsg : "text copied to clipboard";
+  const msg = customNotiMsg ?? "text copied to clipboard";
   spawnNotification(NotifSeverity.Success, msg);
 }

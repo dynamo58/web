@@ -1,0 +1,261 @@
+/* 
+-------------------
+	General
+-------------------
+*/
+
+:root {
+	--main-fg: #eee;
+	--high-fg: #f33;
+	--sec-high-fg: #ff0;
+	--main-bg: #151515;
+	--seco-bg: #303030;
+	--tern-bg: #404040;
+	--quar-bg: #505050;
+	--main-ft: "Segoe UI"
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+/* * {
+	border: 1px solid red
+} */
+
+html {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1em;
+	max-width: 800px;
+}
+
+html,
+body {
+	color: var(--main-fg);
+	background-color: var(--main-bg);
+	font-family: var(--main-ft);
+	padding: 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a,
+a:hover,
+a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+code,
+pre,
+.mono {
+	font-family: "Consolas", monospace;
+	transition: background-color 0.3s ease;
+}
+
+/* 
+-------------------
+	Fonts
+-------------------
+*/
+
+@font-face {
+	font-family: 'Georgia';
+	src: url('/fonts/georgia.ttf') format('truetype'),
+		url('/fonts/georgiab.ttf') format('truetype'),
+		url('/fonts/georgiai.ttf') format('truetype'),
+}
+
+@font-face {
+	font-family: 'JetBrains';
+	src: url('/fonts/JetBrainsMono-Regular.ttf') format('truetype'),
+		url('/fonts/JetBrainsMono-Bold.ttf') format('truetype'),
+		url('/fonts/JetBrainsMono-Italic.ttf') format('truetype'),
+}
+
+/* 
+-------------------
+	Classes
+-------------------
+*/
+
+nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 2em;
+	font-size: 1.25em;
+	border-bottom: 1px solid var(--main-fg);
+	padding-bottom: 1em;
+}
+
+.nav-item {
+	border-radius: 8px;
+	background-color: var(--seco-bg);
+	padding: 0.1em 0.4em;
+	transition: background-color 0.3s ease;
+}
+
+.nav-item:hover {
+	background-color: var(--high-fg);
+}
+
+
+
+.heading {
+	display: flex;
+	gap: 1em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid var(--main-fg);
+}
+
+.heading__img {
+	border-radius: 1em;
+	margin: 1em;
+	border: 3px solid var(--high-fg)
+}
+
+.heading__content {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+}
+
+.heading__text {
+	align-self: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.highlight {
+	font-weight: bold;
+	color: var(--high-fg) !important;
+}
+
+.highlight-alt {
+	font-weight: bold;
+	color: var(--sec-high-fg) !important;
+}
+
+.highlight-bigger {
+	font-weight: bold;
+	font-size: 1.125em;
+	color: var(--high-fg);
+}
+
+.content-section {
+	margin-top: 2em;
+	padding-left: 1em;
+	padding-right: 1em;
+	display: flex;
+	flex-direction: column;
+	gap: 1em
+}
+
+.content-section img {
+	max-width: 80%;
+	display: block;
+	margin: 1em auto;
+	border-radius: 1em;
+}
+
+.circ-boxed {
+	border-radius: 0.6em;
+	background-color: var(--seco-bg);
+	padding: 0.25em;
+}
+
+.spaced-lis>li {
+	margin-top: .5em;
+}
+
+.quote {
+	display: block;
+	margin-left: auto;
+	width: 80%;
+	min-width: 100px;
+	font-style: italic;
+}
+
+
+.code-block-wrapper {
+	border-radius: .75em;
+	cursor: pointer;
+	background-color: var(--seco-bg);
+}
+
+.code-block-wrapper>pre {
+	padding: .5em;
+	tab-size: 4;
+}
+
+.code-block-wrapper__label-upper {
+	padding-left: 1em;
+	border-top-right-radius: .75em;
+	border-top-left-radius: .75em;
+	border-bottom: 1px solid var(--main-fg);
+	width: 100%;
+	display: block;
+	overflow: hidden;
+	position: relative;
+	right: 0;
+}
+
+.code-block-wrapper__label-lower {
+	padding-left: 1em;
+	border-bottom-right-radius: .75em;
+	border-bottom-left-radius: .75em;
+	background-color: var(--tern-bg);
+	width: 100%;
+	display: block;
+	overflow: hidden;
+	position: relative;
+	right: 0;
+}
+
+.cute-border {
+	padding: 0.5em 2em 1em 2em;
+	margin: 1em 0;
+	border-radius: 1em;
+	border: 1px solid var(--main-fg);
+	display: inline-block;
+}
+
+.green-tinted {
+	background-color: #00ff0033 !important;
+}
+
+.blue-tint {
+	background-color: #258dd333 !important;
+}
+
+.red-tint {
+	background-color: #d3252533 !important;
+}
+
+.article-metadata {
+	border-bottom: 1px solid var(--main-fg);
+	padding-bottom: 1em;
+}
+
+
+.article-contents {
+	font-family: Georgia;
+	font-size: 1.125em;
+}
+
+code.hljs {
+	font-family: JetBrains;
+	/* background-color: #ffffff00 !important; */
+	border-radius: 1em;
+	font-size: 0.84em;
+	;
+}
+
+a.ref {
+	text-decoration: underline;
+	background-color: #258dd333 !important;
+}
