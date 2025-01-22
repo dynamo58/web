@@ -27,3 +27,6 @@ async function copyToClipboard(str, customNotiMsg) {
   const msg = customNotiMsg ?? "text copied to clipboard";
   spawnNotification(NotifSeverity.Success, msg);
 }
+
+const years = () =>
+  Math.abs((new Date(Date.now() - new Date(2003, 0, 2))).getUTCFullYear() - 1970);
