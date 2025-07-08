@@ -1,746 +1,802 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles/main.css" />
-    <script defer src="/scripts/main.js"></script>
-    <!-- <link
-      rel="stylesheet"
-      href="/scripts/highlight/styles/atom-one-dark.min.css"
-    /> -->
-    <!-- <script src="/scripts/highlight/highlight.min.js"></script> -->
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/styles/index.css" />
+        <link rel="icon" href="/media/favicon.svg" type="image/svg+xml" />
+        <script defer src="/scripts/main.js"></script>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
-    <!-- and it's easy to individually load additional languages -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+        <!-- and it's easy to individually load additional languages -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script> -->
 
-    <script>
-      hljs.highlightAll();
-    </script>
-    <title>smolik.xyz</title>
-  </head>
-  <body>
-    <div class="sidebar">
-      <div class="aboutMeSummaryArea">
-        <div class="avatarArea">
-          <img src="/media/avatar.webp" alt="avatar" class="avatar" />
+        <script>
+            hljs.highlightAll();
+        </script>
+        <title>smolik.xyz</title>
+    </head>
+    <body>
+        <button id="theme-toggle" title="Přepnout motiv">🌓</button>
+        <div class="contentWrapper">
+            <div class="content">
+                <div class="breadcrumbs">
+                    <a href="/" class="breadcrumb-item">Domů</a>
+                    <div class="breadcrumb-divider">/</div>
+                    <a href="#" class="breadcrumb-item">linux-ricing</a>
+                </div>
+
+                <h1>Příručka pro přizpůsobení Linuxového desktopu</h1>
+                <div class="article-meta">
+                    <span>Autor: <span class="stat">Marek Smolík</span></span
+                    ><br />
+                    <span>Publikováno: <span class="stat">21.7.2024</span></span
+                    ><br />
+                    <span
+                        >Aktualizace: <span class="stat">21.7.2024</span></span
+                    >
+                </div>
+
+                <hr />
+                <div style="margin-bottom: 2em"></div>
+
+                <p>
+                    Linux desktop má výhodu v tom, že je velice
+                    modularizovatelný. Tím míním, že lze jednotlivé komponenty
+                    nahrazovat příslušnými alternativami a tím si skutečně
+                    přizpůsobit a odladit prostředí tak, jak člověk skutečně
+                    chce. Pokud je však člověk nováček, může to být velice
+                    atypické a silně netriviální se vůbec zorientovat a uchopit
+                    to za správný konec.
+                </p>
+
+                <p>
+                    V tomto článku se pokusím podat zevrubný přehled komponent,
+                    které se do linuxového desktopu skládají, jejich příklady, a
+                    jak vůbec začít.
+                </p>
+
+                <span class="highlight"
+                    ><b>Pozor</b>: Řada konceptů a principů v tomto článku je
+                    zjednodušena za účelem přehlednosti.</span
+                >
+
+                <h3>Distribuce a desktopová prostředí</h3>
+
+                <p>
+                    Nejzákladnějším rozdělením různých instancí Linuxu jsou tzv.
+                    <i>distribuce</i> (<i>distributions/distros</i>). Striktně
+                    řečeno je Linux pouze jádro daného operačního systému. K
+                    němu jsou přiloženy jen velice nezbytné
+                    <a target="_blank" href="https://www.gnu.org/">GNU</a>
+                    nástroje. Toto kombo se často označuje jako GNU+Linux.
+                </p>
+                <p>
+                    To je ovšem stále málo, takovýto systém nedokáže moc z toho,
+                    co od moderního počítačového systému očekáváme. Zde
+                    nastupují na scénu distribuce. Distribuce jsou, vágně
+                    řečeno, balíčky softwaru, které jsou k GNU+Linux připojeny a
+                    vytvoří se tak kompletní a funkční Linuxový desktop.
+                </p>
+
+                <div class="figure">
+                    <div class="figure-content">
+                        <img
+                            src="/media/linux-rice/1.png"
+                            class="figure-picture"
+                            style="display: block; width: 30em"
+                        />
+                    </div>
+                    <div class="figure-description">
+                        <span>Obrázek 1: Anatomie Linuxové distribuce</span>
+                    </div>
+                </div>
+
+                <p>
+                    Rozsáhlý přehled distribucí a jejich vývoje lze najít
+                    <a
+                        target="_blank"
+                        href="https://upload.wikimedia.org/wikipedia/commons/a/ad/2023_Linux_Distributions_Timeline.svg"
+                        >zde</a
+                    >. Mezi nejpopulárnější patří:
+                </p>
+
+                <ul class="compact-list">
+                    <li>
+                        <a target="_blank" href="https://ubuntu.com/">Ubuntu</a
+                        >,
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://linuxmint.com/"
+                            >Linux Mint</a
+                        >,
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://archlinux.org/"
+                            >Arch Linux</a
+                        >.
+                    </li>
+                </ul>
+
+                <p>
+                    Často se ale může stát, že byste od pohledu jednotlivé
+                    distribuce na první pohled nerozeznali. Narážíme zde na
+                    pojem
+                    <i>desktopové prostředí</i> (DE –
+                    <i>desktop environment</i>). To je sám o sobě balíček
+                    softwaru souvisejícího (hlavně) se vzhledem OS. Tyto balíčky
+                    jsou naprosto nezávislé na jednotlivých distribucí. Současně
+                    existují nějaká ustálená „balení“, a často si tvůrci
+                    jednotlivých distribucí usnadní práci s výběrem a přifaří k
+                    distribuci právě některý ze známějších DE. Mezi ně patří
+                    např.:
+                </p>
+
+                <ul class="compact-list">
+                    <li>
+                        <a target="_blank" href="https://www.xfce.org/">XFCE</a
+                        >,
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.gnome.org/"
+                            >GNOME</a
+                        >,
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://kde.org/cs/">KDE</a>.
+                    </li>
+                </ul>
+
+                <p>
+                    Softwareová komponenta, kterou se ale distribuce často liší
+                    jsou
+                    <i>package managemeners</i> (správci balíčků). Na Linuxu
+                    preferabilně nestahujeme aplikace tak, že si nějaký program
+                    nudně najdeme na internetu, stáhneme jakýsi installer a
+                    proklikáme se mermomocí k jeho instalaci (i když to
+                    samozřejmě lze). Vše probíhá z pohodlí příkazového řádku, či
+                    nějaké grafické aplikace. Jednodušše si lze napsat
+                    <code>sudo apt-get install firefox</code> – a voilà – už se
+                    vám stahuje Firefox. Tyto systémy však většinou nelze
+                    obměňovat, jsou úzce spjaty s nainstalovaným systémem.
+                    Například zmíněné distribuce používají následující package
+                    managery:
+                </p>
+
+                <ul class="compact-list">
+                    <li>
+                        Ubuntu, Linux Mint →
+                        <a
+                            target="_blank"
+                            href="https://wiki.debian.org/Aptitude"
+                            >Aptitude</a
+                        >,
+                    </li>
+                    <li>
+                        Arch Linux →
+                        <a
+                            target="_blank"
+                            href="https://wiki.archlinux.org/title/Pacman"
+                            >Pacman</a
+                        >
+                        (často nahrazován nějakým <i>AUR helper</i>em jako paru,
+                        či yay).
+                    </li>
+                </ul>
+
+                <h3>Nastartování</h3>
+
+                <p>
+                    Nyní se na věc podíváme z trochu jiného úhlu. Přesněji se
+                    zaměříme na to, co se děje, když spustíme Linuxový systém.
+                </p>
+
+                <p>
+                    Nejprve se spustí BIOS (Basic Input Output System). Ten
+                    provede různé kontroly. Následně se podívá do MBR (Master
+                    Boot Record) – 1. sektor na bootovatelném disku. Tam najde
+                    informace o <i>bootloaderu</i> a spustí ho. Bootloader je
+                    program, který spustí příslušný systém. Jde o to, že na
+                    jednom stroji může být více systémů (více Linuxových
+                    distribucí, či dokonce různých operačních systémů). V
+                    bootloaderu si uživatel vybere systém, který chce spustit.
+                    Nejpoužívanějším (a v podstatě jediným rozumným)
+                    bootloaderem je
+                    <a target="_blank" href="https://www.gnu.org/software/grub/"
+                        >GRUB</a
+                    >.
+                </p>
+
+                <p>
+                    Booatloader po vybrání zavede příslušné
+                    <i>jádro</i> (<i>kernel</i>) do operační paměti. To provede
+                    nějaké nepodstatné věci a spustí tzv. <i>init proces</i>.
+                    Tento init proces následně spouští jednotlivé skripty pro
+                    systém a vloží některé kernelové moduly (tj. řadiče
+                    zařízení).
+                </p>
+                <p>
+                    Nejrošířenější init systém je v současnosti
+                    <a target="_blank" href="https://systemd.io/">systemd</a>.
+                    Ačkoliv proti němu všichni něco mají, nemá v současné době
+                    reálného rivala.
+                </p>
+
+                <p>
+                    systemd je onen klasický výpis, který každá linuxář vidí při
+                    spuštění své mašiny:
+                </p>
+
+                <div class="figure">
+                    <div class="figure-content">
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Systemd-on-fedora.svg/800px-Systemd-on-fedora.svg.png"
+                            class="figure-picture"
+                            style="max-width: 20em"
+                        />
+                    </div>
+                    <div class="figure-description">
+                        <span
+                            >Obrázek 2: Příklad výpisu systemd při spouštění
+                            systému</span
+                        >
+                    </div>
+                </div>
+
+                <p>
+                    systemd spustí různé procesy (dají se lehce přidat či
+                    upravit prostřednictvím tzv. <i>service file</i>). Ten
+                    nakonec nastartuje; za předpokladu, že nějaké v systému je;
+                    GUI...
+                </p>
+
+                <h3>Koncepce GUI</h3>
+
+                <p>
+                    Nyní se zaměříme na to, jak vůbec vznikají grafické prvky.
+                    To není samozřejmé; Linuxové stanice vůbec grafické rozhraní
+                    nepotřebují! ...Mohou být zkrátka ovládány terminálem.
+                </p>
+
+                <p>
+                    V součastnosti existují 2 reálně používané systémy
+                    umožňující GUI. Jedná se o
+                    <a target="_blank" href="https://www.x.org/wiki/">X</a> (též
+                    X11) a
+                    <a target="_blank" href="https://wayland.freedesktop.org/"
+                        >Wayland</a
+                    >. X je prehistorický systém s počátky v 80. letech minulého
+                    století a v důsledku toho má určité problémy a limitace.
+                    Wayland vznikl jako moderní alternativa pro X. Někteří by
+                    však mohli říci, že Wayland není ještě připraven se postu X
+                    zmocnit. Status quo je takové, že většina Linuxových stanic
+                    dnes stále používá X, Wayland je prozatím marginální; spíše
+                    pro nadšence.
+                </p>
+
+                <p>
+                    V souvislosti s poskytovateli GUI jsou také často zmiňovány
+                    <i>kompozitory</i> (compositors). Kompozitory poskytují
+                    různé rozšiřující grafické prvky jako průhlednost oken,
+                    stíny, přechody, atd. Příkladem kompozitoru pro X může být
+                    <a target="_blank" href="https://github.com/yshui/picom"
+                        >picom</a
+                    >. U Waylandu hovořit o kompozitorech postrádá smyslu;
+                    „kompozitor“ je integrální součástí jeho architektury.
+                </p>
+
+                <p>
+                    První grafický program, který se spustí je tzv.
+                    <i>display manager</i> (DM). To je program, ve kterém se
+                    uživatel přihlásí a vybere WM (o těch později). Nejčastěji
+                    používanými display managers jsou např.:
+                </p>
+
+                <ul class="compact-list">
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://wiki.archlinux.org/title/LightDM"
+                            >LightDM</a
+                        >,
+                    </li>
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://manpages.ubuntu.com/manpages/bionic/man8/gdm3.8.html"
+                            >gdm3</a
+                        >,
+                    </li>
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://wiki.archlinux.org/title/SDDM"
+                            >SDDM</a
+                        >.
+                    </li>
+                </ul>
+
+                <p>Celé si to lze shrnout následovně:</p>
+
+                <div class="figure">
+                    <div class="figure-content">
+                        <img
+                            src="/media/linux-rice/2.png"
+                            class="figure-picture"
+                            style="width: 80%"
+                        />
+                    </div>
+                    <div class="figure-description">
+                        <span
+                            >Obrázek 3: Zjednodušený proces spuštění
+                            desktopu</span
+                        >
+                    </div>
+                </div>
+
+                <h3>Manipulace oken a desktopové programy</h3>
+
+                <p>
+                    Když už chceme spustit několik grafických programů a
+                    interagovat s nimi konkurentně, je nutný systém pro
+                    zacházení s nimi. Toto je role tzv.
+                    <i>window managers</i> (WMs). Z těch se rozlišují 2 typy:
+                    <i>floating WMs</i> a <i>tiling WMs</i>.
+                </p>
+
+                <p>
+                    Floating WMs jsou ten profláklý způsob, nímž se klasicky
+                    ovládají okna ve Windows či Mac OS. Zkrátka za okno
+                    zatáhnete kurzorem myši a ono se pohne. Tento typ je
+                    rozšířenější. Tyto WM však nejsou většinou používány a
+                    vyměňovány samostatně. Nejpoužívanější floating WMs jsou
+                    totiž spjaty s desktop environments, které tyto WMs
+                    používají. Např.:
+                </p>
+
+                <ul class="compact-list">
+                    <li>XFCE → XFWM,</li>
+                    <li>GNOME → GNOME (GNOME Shell).</li>
+                </ul>
+
+                <p>
+                    Nejpoužívanější floating WM, která není přímo vázána na
+                    nějaký desktop enviroment je
+                    <a
+                        target="_blank"
+                        href="https://wiki.archlinux.org/title/Openbox"
+                        >Openbox</a
+                    >.
+                </p>
+
+                <p>
+                    Tiling WMs mají výhodu, že okna v nich se dají ovládat bez
+                    myši. Okna se tradičně nepřekrývají (i když některé WM to
+                    také dokážé), ale rozdělují si plochu na „území“. Některé
+                    okno je vždy <b>vybráno</b>, s tím lze interagovat pomocí
+                    nějakých speciálních klávesových zkratek. Když se toto okno
+                    zavře, zbylá okna toto místo nějakým způsobem zaberou pro
+                    sebe. A opačně když se nějaké okno přidá, ubere se nějakým
+                    způsobem území již otevřeným oknům. Mezi nejpoužívanější
+                    tiling window manages patří:
+                </p>
+
+                <ul class="compact-list">
+                    <li><a target="_blank" href="https://i3wm.org/">i3</a>,</li>
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://github.com/baskerville/bspwm"
+                            >bspwm</a
+                        >,
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://herbstluftwm.org/"
+                            >Herbstluftwm</a
+                        >.
+                    </li>
+                </ul>
+
+                <p>
+                    Pro lepší představu jak tiling vypadá v praxi, doporučuji si
+                    pustit kousek tohoto videa:
+                    <a target="_blank" href="https://youtu.be/GKviflL9XeI?t=185"
+                        >https://youtu.be/GKviflL9XeI?t=185</a
+                    >.
+                </p>
+
+                <p>
+                    U display managerů bylo zmíněno, že se při přihlašování
+                    vybírá window manager. Těch na systému může být libovolný
+                    počet, třeba i tiling a floating zároveň.
+                </p>
+
+                <p>
+                    Příkladem okna, které mají někteří uživatelé neustále
+                    otevřené je tzv.
+                    <i>panel</i> či <i>bar</i> (též <i>status bar</i> či
+                    <i>dock</i>). Jedná se o onu klasickou lištu, která je třeba
+                    ve Windows ve výchozí poloze na spodku obrazovky a zobrazuje
+                    např. ikony programů, které jsou současně spuštěny. Existuje
+                    široká řada těchto barů. Často jsou opět svázány s
+                    příslušnými desktop enviromnets (např. XFCE → xfce-panel),
+                    Ale existuje celá řada různých panelů, které jsou nezávislé.
+                    Nejpopulárnější z nich jsou např.:
+                </p>
+
+                <ul class="compact-list">
+                    <li>
+                        <a target="_blank" href="https://polybar.github.io/"
+                            >polybar</a
+                        >,
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://i3wm.org/i3bar/"
+                            >i3bar</a
+                        >,
+                    </li>
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://codeberg.org/xmobar/xmobar"
+                            >Xmobar</a
+                        >.
+                    </li>
+                </ul>
+
+                <div class="figure">
+                    <div class="figure-content">
+                        <img
+                            src="https://raw.githubusercontent.com/adi1090x/files/master/polybar-themes/previews/grayblocks/md.gif"
+                            class="figure-picture"
+                            style="width: 100%"
+                        />
+                    </div>
+                    <div class="figure-description">
+                        <span
+                            >Obrázek 4: Příklad vysoce přizpůsobeného
+                            polybaru</span
+                        >
+                    </div>
+                </div>
+
+                <h3>Další programy a systémy</h3>
+
+                <p>
+                    Tím byly představeny všechny grafické typy programů v tomto
+                    článku. Zde bych však chtěl ještě zmínit některé další typy,
+                    které lze volit v tomto modulárním stroji, jímž jsou moderní
+                    linuxové desktopy.
+                </p>
+
+                <p>
+                    Co se týče audia v Linuxu, existují 2 audiové systémy.
+                    <a
+                        target="_blank"
+                        href="https://www.freedesktop.org/wiki/Software/PulseAudio/"
+                        >PulseAudio</a
+                    >
+                    a
+                    <a target="_blank" href="https://pipewire.org/">PipeWire</a
+                    >. Přitom PipeWire je novější alternativa PulseAudia.
+                    Funguje lépe a je více podporován ze softwarového hlediska.
+                    Na většině systémů však přetrvává PulseAudio do dnes.
+                </p>
+
+                <p>
+                    Dalším často obměňovaným komponentem linuxového desktopu je
+                    <i>průzkumník souborů</i> (file explorer/manager). Zde se
+                    také propisuje posedlost linuxářů přenést všechno do
+                    terminálu. Existují totiž dva typy: grafické průzkumníky a
+                    terminálové průzkumníky. Mezi ty nejpoužívanější grafické
+                    patří:
+                </p>
+
+                <ul class="compact-list">
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://docs.xfce.org/xfce/thunar/start"
+                            >Thunar</a
+                        >,
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://apps.kde.org/dolphin/"
+                            >Dolphin</a
+                        >,
+                    </li>
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://github.com/linuxmint/nemo"
+                            >Nemo</a
+                        >.
+                    </li>
+                </ul>
+
+                Mezi ty terminolvé patří např.:
+
+                <ul class="compact-list">
+                    <li>
+                        <a target="_blank" href="https://github.com/ranger/"
+                            >Ranger</a
+                        >,
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://github.com/gokcehan/lf"
+                            >Lf</a
+                        >.
+                    </li>
+                </ul>
+
+                <p>
+                    Když už byly nakousnuty terminálové průzkumníky souborů, je
+                    třeba už konečně zmínit terminálové emulátory samotné. Ty se
+                    liší zejména vzhledem a přizpůsobitelností.
+                    Nejpopulárnějšími jsou:
+                </p>
+
+                <ul class="compact-list">
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://invisible-island.net/xterm/"
+                            >xterm</a
+                        >,
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://alacritty.org/"
+                            >Alacritty</a
+                        >,
+                    </li>
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://wezfurlong.org/wezterm/index.html"
+                            >WezTerm</a
+                        >,
+                    </li>
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://sw.kovidgoyal.net/kitty/"
+                            >kitty</a
+                        >.
+                    </li>
+                </ul>
+
+                <p>
+                    Skuteční fajnšmekeři používají více terminálů otevřených
+                    najednou. To lze udělat pomocí window managerů, ale existují
+                    možnosti, jak tohoto dosáhnout přímo na úrovni terminálu –
+                    mít otevřeno jedno terminálové okno a v něm přepínat mezi
+                    „záložkami“ terminálů, které uchovávají svůj stav.
+                    Implementace se různí. Nejznámější je
+                    <a target="_blank" href="https://github.com/tmux/tmux/wiki"
+                        >tmux</a
+                    >
+                    (od <i>Terminal MUltipleXer</i>). Ten lze použít v
+                    jakémkoliv terminálovém emulátoru. U některých terminálových
+                    emulátorů je správa „záložek“ zabudovaná přímo do nich,
+                    třeba jako u zmíněného WezTermu.
+                </p>
+
+                <p>
+                    Další zmíněníhodnou kategorií programů jsou tzv.
+                    <i>application launchers</i>. Tento název je avšak
+                    zavádějící, nemusí jen spouštět aplikace, ale cokoliv.
+                    Většinou si je člověk nabinduje na nějakou klávesovou
+                    zkratku. Po jejich spuštění se zobrazí nějaký seznam.
+                    Povětšinou to bývá seznam spustitelných souborů (které jsou
+                    v <code>$PATH</code>). V tomto seznamu lze také vyhledávat.
+                    Je to tedy takové start menu. Ve skutečnosti jde použít i k
+                    jiným věcem – seznam lze libovolně přizpůsobit. Například
+                    jeden z dalších populárních použití je udělat ze seznamu
+                    „emoji toolbar“. Dva nejpopulárnější jsou:
+                </p>
+
+                <ul class="compact-list">
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://davatorium.github.io/rofi/"
+                            >Rofi</a
+                        >,
+                    </li>
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://wiki.archlinux.org/title/Dmenu"
+                            >Dmenu</a
+                        >.
+                    </li>
+                </ul>
+
+                <div class="figure">
+                    <div class="figure-content">
+                        <img
+                            src="/media/linux-rice/rofi.webp"
+                            class="figure-picture"
+                            style="width: 75%"
+                        />
+                    </div>
+                    <div class="figure-description">
+                        <span
+                            >Obrázek 5: Rofi použitý jako application launcher a
+                            emoji toolbar</span
+                        >
+                    </div>
+                </div>
+
+                <p>
+                    Další funkci, kterou používá často řádný power-user je
+                    <i>screenshotování</i>. Často chce člověk screenshoty rychle
+                    upravit a někam odeslat; třeba rovnou na imgur. Některé z
+                    nich jsou:
+                </p>
+
+                <ul>
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://docs.xfce.org/apps/screenshooter/start"
+                            >xfce4-screenshooter</a
+                        >
+                        (dostupný v každé XFCE instalaci, ale funkční i
+                        samostatně),
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://flameshot.org/"
+                            >Flameshot</a
+                        >,
+                    </li>
+                    <li>
+                        <a
+                            target="_blank"
+                            href="https://apps.kde.org/spectacle/"
+                            >Spectacle</a
+                        >,
+                    </li>
+                </ul>
+
+                <p>
+                    Dalším modularizovatelnou součástí jsou <i>shelly</i>. Shell
+                    je program, jenž interpretuje kód psaný do terminálu. Na
+                    drtivé většině systému je defaultně
+                    <a target="_blank" href="https://www.gnu.org/software/bash/"
+                        >bash</a
+                    >. Je tak populární, že shell a bash se někdy používá
+                    vzájemně zaměnitelně. Existují i další volby. Jedním takovým
+                    „general-purpose“ shellem je
+                    <a target="_blank" href="https://zsh.sourceforge.io/">zsh</a
+                    >. Ten je atraktivní tím, že toho dokáže mnohem víc. Toho
+                    dosahuje hlavně díky snadné rozšířitelnosti pomocí
+                    komunitních plug-inů. Například nabízí našeptávání a syntax
+                    highlighting (přímo v shellu). Dalším podobným je
+                    <a target="_blank" href="https://fishshell.com/"
+                        >fish shell</a
+                    >. Současně se také objevují různé shelly, které jsou
+                    zaměřené přímo na nějakou specifickou věc. Jedním z nich je
+                    <a target="_blank" href="https://www.nushell.sh/">nushell</a
+                    >, který je zaměřen na zpracovávání dat.
+                </p>
+
+                <p>
+                    Nutno ještě podotknout, že shellů může být na systému třeba
+                    desítky a je velice jednoduché mezi nimi přepínat. Tedy to
+                    není „jeden nebo nic“. Každý shell má také speciální
+                    konfigurační soubor, který se spustí vždy, když nastartuje
+                    daný shell. Tento konfigurák často končí na <code>rc</code>.
+                    Třeba bash má <code>.bashrc</code> a zsh má
+                    <code>.zshrc</code>.
+                </p>
+
+                <p>
+                    Abychom dorazili ty terminály – <i>prompty</i>. Prompt je v
+                    terminálu text, který se zobrazí na řádku (či řádcích)
+                    předtím, než uživatel zapíše nějaký příkaz. Často zobrazuje
+                    název uživatele, název stroje a současný adresář:
+                </p>
+
+                <div class="figure">
+                    <div class="figure-content">
+                        <img
+                            src="/media/linux-rice/prompt.png"
+                            class="figure-picture"
+                            style="height: 5em; width: auto"
+                        />
+                    </div>
+                    <div class="figure-description">
+                        <span>Obrázek 6: Můj osobní prompt</span>
+                    </div>
+                </div>
+
+                <p>
+                    Klasicky si lze jednodušše prompt nakonfigurovat nastavením
+                    speciální proměnné <code>$PS1</code> v konfiguračním souboru
+                    používaného shellu. Lze použít různé nástroje pro
+                    vygenerování tohoto nastavení, třeba
+                    <a target="_blank" href="https://bash-prompt-generator.org/"
+                        >tento</a
+                    >.
+                </p>
+
+                <p>
+                    Jiný způsob je použít pro prompt externí program jako třeba
+                    <a target="_blank" href="https://starship.rs/">starship</a>.
+                    V něm lze nakonfigurovat šiřší škálu funkcionalit, třeba
+                    zobrazovat současnou git branch.
+                </p>
+
+                <h3>Dotfiles</h3>
+
+                <p>
+                    Pokud se vydáte na cestu si přizpůsobit svůj systém na
+                    maximum, bylo by velice nešťastné replikovat konfiguraci na
+                    jiném stroji. To může trvat velice – velice dlouho.
+                    Nejčastější způsob, jak se s tímto vypořádat, je pomocí tzv.
+                    <i>dotfiles</i>. Dotfiles je, volně řečeno, kolekce
+                    konfiguračních souborů, skriptů, a dalších podpůrných
+                    souborů pro programy na daném systému. (Tyto soubory často
+                    začínají tečkou, odtud „dotfiles“). Tuto kolekci si člověk
+                    následně synchronizuje přes git a hostuje třeba na GitHubu.
+                    Příklad takového repozitáře lze najít
+                    <a href="https://github.com/dynamo58/dotfiles">zde</a>.
+                </p>
+
+                <p>
+                    Pak lze dosáhnout situace, kde by byl proces přízpůsobení
+                    nového stroje následující:
+                </p>
+
+                <ol class="compact-list">
+                    <li>Na systému se nainstaluje chtěná Linux distribuce,</li>
+                    <li>Naklonuje se repozitář s dotfiles,</li>
+                    <li>
+                        Spustí se skript z repozitáře, který stáhne chtěné
+                        programy a vykoná další konfigurace systému,
+                    </li>
+                    <li><i>systém je připraven k plnému použití</i>.</li>
+                </ol>
+
+                <p>Tento celý proces může trvat třeba jen 15 minut.</p>
+
+                <h3>Bonus 1: suckless</h3>
+
+                <p>
+                    Pokud spadnete opravdu hluboko do zaječí díry přízpůsobování
+                    Linuxu narazíte často na pojmy jako
+                    <i>bloat</i> („nabobtnalý“). Toto je slovíčko s negativní
+                    konotací označující software, který se danému člověku zdá
+                    zbytečně přehnaný. Je naplněn různým odpadem, který člověk
+                    přece nemůže potřebovat a jenom mu to hyzdí jeho perfektní
+                    minimální Linuxovou instalaci. Lidé, kteří toto slovíčko
+                    házejí jako vidlema seno často odkazují, jako na modlu, na
+                    <i>suckless</i> software. To je software od
+                    <a target="_blank" href="https://suckless.org/"
+                        >suckless.org</a
+                    >. Jedná se o minimalistické implementace některých zde
+                    zmíněných kategorií softwaru.
+                </p>
+
+                <h3>Bonus 2: unixp*rn</h3>
+
+                <p>
+                    Pokud vyšperkujete svůj desktop na maximum, můžete vzhled
+                    svého desktopu sdílet na subredditu
+                    <a target="_blank" href="https://www.reddit.com/r/unixporn/"
+                        >unixp*rn</a
+                    >. Najednou se ze stínů vydrápe tlupa glorifikovaných
+                    obyvatelů suterénů, kteří vaší konfiguraci označí za bloat.
+                </p>
+            </div>
         </div>
-        <div class="nameArea">
-          <span class="name">Marek Smolík</span>
-        </div>
-        <div class="shortDescArea">
-          21, student učitelství matematiky a informatiky
-        </div>
-        <div class="linksAndContactArea">
-          <div>
-            <a target="_blank" href="https://github.com/dynamo58">
-              <svg
-                class="icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 496 512"
-              >
-                <path
-                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
-                />
-              </svg>
-            </a>
-          </div>
-          <div
-            style="cursor: pointer"
-            onclick="copyToClipboard('spalovac_mrtvol', 'Discord jméno zkopírováno do schránky.')"
-          >
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 640 512"
-            >
-              <path
-                d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z"
-              />
-            </svg>
-          </div>
-          <div
-            style="cursor: pointer"
-            onclick="copyToClipboard(['m','a','r','e','k','3','s','m','o','l','i','k','@','s','e','z','n','a','m','.','c','z'].join('') , 'Kontaktní email zkopírován do schránky.')"
-          >
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-            >
-              <path
-                d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="switchersArea">
-        <div class="langSwitcher">
-          <a href="/en"><span class="icon switch-btn">🇬🇧</span></a>
-        </div>
-        <div class="themeSwitcher">
-          <div><span class="icon switch-btn">⚪</span></div>
-        </div>
-      </div>
-    </div>
 
-    <div class="contentWrapper">
-      <div class="content">
-        <div class="breadcrumbs">
-          <a href="/" class="breadcrumb-item">Domů</a>
-          <div class="breadcrumb-divider">/</div>
-          <a href="#" class="breadcrumb-item">linux-ricing</a>
-        </div>
-
-        <h1>Příručka pro přizpůsobení Linuxového desktopu</h1>
-        <div class="article-meta">
-          <span>Autor: <span class="stat">Marek Smolík</span></span
-          ><br />
-          <span>Publikováno: <span class="stat">21.7.2024</span></span
-          ><br />
-          <span>Aktualizace: <span class="stat">21.7.2024</span></span>
-        </div>
-
-        <hr />
-        <div style="margin-bottom: 2em"></div>
-
-        <p>
-          Linux desktop má výhodu v tom, že je velice modularizovatelný. Tím
-          míním, že lze jednotlivé komponenty nahrazovat příslušnými
-          alternativami a tím si skutečně přizpůsobit a odladit prostředí tak,
-          jak člověk skutečně chce. Pokud je však člověk nováček, může to být
-          velice atypické a silně netriviální se vůbec zorientovat a uchopit to
-          za správný konec.
-        </p>
-
-        <p>
-          V tomto článku se pokusím podat zevrubný přehled komponent, které se
-          do linuxového desktopu skládají, jejich příklady, a jak vůbec začít.
-        </p>
-
-        <span class="highlight"
-          ><b>Pozor</b>: Řada konceptů a principů v tomto článku je zjednodušena
-          za účelem přehlednosti.</span
-        >
-
-        <h3>Distribuce a desktopová prostředí</h3>
-
-        <p>
-          Nejzákladnějším rozdělením různých instancí Linuxu jsou tzv.
-          <i>distribuce</i> (<i>distributions/distros</i>). Striktně řečeno je
-          Linux pouze jádro daného operačního systému. K němu jsou přiloženy jen
-          velice nezbytné
-          <a target="_blank" href="https://www.gnu.org/">GNU</a> nástroje. Toto
-          kombo se často označuje jako GNU+Linux.
-        </p>
-        <p>
-          To je ovšem stále málo, takovýto systém nedokáže moc z toho, co od
-          moderního počítačového systému očekáváme. Zde nastupují na scénu
-          distribuce. Distribuce jsou, vágně řečeno, balíčky softwaru, které
-          jsou k GNU+Linux připojeny a vytvoří se tak kompletní a funkční
-          Linuxový desktop.
-        </p>
-
-        <div class="figure">
-          <div class="figure-content">
-            <img
-              src="/media/linux-rice/1.png"
-              class="figure-picture"
-              style="display: block; width: 30em"
-            />
-          </div>
-          <div class="figure-description">
-            <span>Obrázek 1: Anatomie Linuxové distribuce</span>
-          </div>
-        </div>
-
-        <p>
-          Rozsáhlý přehled distribucí a jejich vývoje lze najít
-          <a
-            target="_blank"
-            href="https://upload.wikimedia.org/wikipedia/commons/a/ad/2023_Linux_Distributions_Timeline.svg"
-            >zde</a
-          >. Mezi nejpopulárnější patří:
-        </p>
-
-        <ul class="compact-list">
-          <li><a target="_blank" href="https://ubuntu.com/">Ubuntu</a>,</li>
-          <li>
-            <a target="_blank" href="https://linuxmint.com/">Linux Mint</a>,
-          </li>
-          <li>
-            <a target="_blank" href="https://archlinux.org/">Arch Linux</a>.
-          </li>
-        </ul>
-
-        <p>
-          Často se ale může stát, že byste od pohledu jednotlivé distribuce na
-          první pohled nerozeznali. Narážíme zde na pojem
-          <i>desktopové prostředí</i> (DE – <i>desktop environment</i>). To je
-          sám o sobě balíček softwaru souvisejícího (hlavně) se vzhledem OS.
-          Tyto balíčky jsou naprosto nezávislé na jednotlivých distribucí.
-          Současně existují nějaká ustálená „balení“, a často si tvůrci
-          jednotlivých distribucí usnadní práci s výběrem a přifaří k distribuci
-          právě některý ze známějších DE. Mezi ně patří např.:
-        </p>
-
-        <ul class="compact-list">
-          <li><a target="_blank" href="https://www.xfce.org/">XFCE</a>,</li>
-          <li><a target="_blank" href="https://www.gnome.org/">GNOME</a>,</li>
-          <li><a target="_blank" href="https://kde.org/cs/">KDE</a>.</li>
-        </ul>
-
-        <p>
-          Softwareová komponenta, kterou se ale distribuce často liší jsou
-          <i>package managemeners</i> (správci balíčků). Na Linuxu preferabilně
-          nestahujeme aplikace tak, že si nějaký program nudně najdeme na
-          internetu, stáhneme jakýsi installer a proklikáme se mermomocí k jeho
-          instalaci (i když to samozřejmě lze). Vše probíhá z pohodlí
-          příkazového řádku, či nějaké grafické aplikace. Jednodušše si lze
-          napsat <code>sudo apt-get install firefox</code> – a voilà – už se vám
-          stahuje Firefox. Tyto systémy však většinou nelze obměňovat, jsou úzce
-          spjaty s nainstalovaným systémem. Například zmíněné distribuce
-          používají následující package managery:
-        </p>
-
-        <ul class="compact-list">
-          <li>
-            Ubuntu, Linux Mint →
-            <a target="_blank" href="https://wiki.debian.org/Aptitude"
-              >Aptitude</a
-            >,
-          </li>
-          <li>
-            Arch Linux →
-            <a target="_blank" href="https://wiki.archlinux.org/title/Pacman"
-              >Pacman</a
-            >
-            (často nahrazován nějakým <i>AUR helper</i>em jako paru, či yay).
-          </li>
-        </ul>
-
-        <h3>Nastartování</h3>
-
-        <p>
-          Nyní se na věc podíváme z trochu jiného úhlu. Přesněji se zaměříme na
-          to, co se děje, když spustíme Linuxový systém.
-        </p>
-
-        <p>
-          Nejprve se spustí BIOS (Basic Input Output System). Ten provede různé
-          kontroly. Následně se podívá do MBR (Master Boot Record) – 1. sektor
-          na bootovatelném disku. Tam najde informace o <i>bootloaderu</i> a
-          spustí ho. Bootloader je program, který spustí příslušný systém. Jde o
-          to, že na jednom stroji může být více systémů (více Linuxových
-          distribucí, či dokonce různých operačních systémů). V bootloaderu si
-          uživatel vybere systém, který chce spustit. Nejpoužívanějším (a v
-          podstatě jediným rozumným) bootloaderem je
-          <a target="_blank" href="https://www.gnu.org/software/grub/">GRUB</a>.
-        </p>
-
-        <p>
-          Booatloader po vybrání zavede příslušné <i>jádro</i> (<i>kernel</i>)
-          do operační paměti. To provede nějaké nepodstatné věci a spustí tzv.
-          <i>init proces</i>. Tento init proces následně spouští jednotlivé
-          skripty pro systém a vloží některé kernelové moduly (tj. řadiče
-          zařízení).
-        </p>
-        <p>
-          Nejrošířenější init systém je v současnosti
-          <a target="_blank" href="https://systemd.io/">systemd</a>. Ačkoliv
-          proti němu všichni něco mají, nemá v současné době reálného rivala.
-        </p>
-
-        <p>
-          systemd je onen klasický výpis, který každá linuxář vidí při spuštění
-          své mašiny:
-        </p>
-
-        <div class="figure">
-          <div class="figure-content">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Systemd-on-fedora.svg/800px-Systemd-on-fedora.svg.png"
-              class="figure-picture"
-              style="max-width: 20em"
-            />
-          </div>
-          <div class="figure-description">
-            <span>Obrázek 2: Příklad výpisu systemd při spouštění systému</span>
-          </div>
-        </div>
-
-        <p>
-          systemd spustí různé procesy (dají se lehce přidat či upravit
-          prostřednictvím tzv. <i>service file</i>). Ten nakonec nastartuje; za
-          předpokladu, že nějaké v systému je; GUI...
-        </p>
-
-        <h3>Koncepce GUI</h3>
-
-        <p>
-          Nyní se zaměříme na to, jak vůbec vznikají grafické prvky. To není
-          samozřejmé; Linuxové stanice vůbec grafické rozhraní nepotřebují!
-          ...Mohou být zkrátka ovládány terminálem.
-        </p>
-
-        <p>
-          V součastnosti existují 2 reálně používané systémy umožňující GUI.
-          Jedná se o
-          <a target="_blank" href="https://www.x.org/wiki/">X</a> (též X11) a
-          <a target="_blank" href="https://wayland.freedesktop.org/">Wayland</a
-          >. X je prehistorický systém s počátky v 80. letech minulého století a
-          v důsledku toho má určité problémy a limitace. Wayland vznikl jako
-          moderní alternativa pro X. Někteří by však mohli říci, že Wayland není
-          ještě připraven se postu X zmocnit. Status quo je takové, že většina
-          Linuxových stanic dnes stále používá X, Wayland je prozatím
-          marginální; spíše pro nadšence.
-        </p>
-
-        <p>
-          V souvislosti s poskytovateli GUI jsou také často zmiňovány
-          <i>kompozitory</i> (compositors). Kompozitory poskytují různé
-          rozšiřující grafické prvky jako průhlednost oken, stíny, přechody,
-          atd. Příkladem kompozitoru pro X může být
-          <a target="_blank" href="https://github.com/yshui/picom">picom</a>. U
-          Waylandu hovořit o kompozitorech postrádá smyslu; „kompozitor“ je
-          integrální součástí jeho architektury.
-        </p>
-
-        <p>
-          První grafický program, který se spustí je tzv.
-          <i>display manager</i> (DM). To je program, ve kterém se uživatel
-          přihlásí a vybere WM (o těch později). Nejčastěji používanými display
-          managers jsou např.:
-        </p>
-
-        <ul class="compact-list">
-          <li>
-            <a target="_blank" href="https://wiki.archlinux.org/title/LightDM"
-              >LightDM</a
-            >,
-          </li>
-          <li>
-            <a
-              target="_blank"
-              href="https://manpages.ubuntu.com/manpages/bionic/man8/gdm3.8.html"
-              >gdm3</a
-            >,
-          </li>
-          <li>
-            <a target="_blank" href="https://wiki.archlinux.org/title/SDDM"
-              >SDDM</a
-            >.
-          </li>
-        </ul>
-
-        <p>Celé si to lze shrnout následovně:</p>
-
-        <div class="figure">
-          <div class="figure-content">
-            <img
-              src="/media/linux-rice/2.png"
-              class="figure-picture"
-              style="width: 80%"
-            />
-          </div>
-          <div class="figure-description">
-            <span>Obrázek 3: Zjednodušený proces spuštění desktopu</span>
-          </div>
-        </div>
-
-        <h3>Manipulace oken a desktopové programy</h3>
-
-        <p>
-          Když už chceme spustit několik grafických programů a interagovat s
-          nimi konkurentně, je nutný systém pro zacházení s nimi. Toto je role
-          tzv. <i>window managers</i> (WMs). Z těch se rozlišují 2 typy:
-          <i>floating WMs</i> a <i>tiling WMs</i>.
-        </p>
-
-        <p>
-          Floating WMs jsou ten profláklý způsob, nímž se klasicky ovládají okna
-          ve Windows či Mac OS. Zkrátka za okno zatáhnete kurzorem myši a ono se
-          pohne. Tento typ je rozšířenější. Tyto WM však nejsou většinou
-          používány a vyměňovány samostatně. Nejpoužívanější floating WMs jsou
-          totiž spjaty s desktop environments, které tyto WMs používají. Např.:
-        </p>
-
-        <ul class="compact-list">
-          <li>XFCE → XFWM,</li>
-          <li>GNOME → GNOME (GNOME Shell).</li>
-        </ul>
-
-        <p>
-          Nejpoužívanější floating WM, která není přímo vázána na nějaký desktop
-          enviroment je
-          <a target="_blank" href="https://wiki.archlinux.org/title/Openbox"
-            >Openbox</a
-          >.
-        </p>
-
-        <p>
-          Tiling WMs mají výhodu, že okna v nich se dají ovládat bez myši. Okna
-          se tradičně nepřekrývají (i když některé WM to také dokážé), ale
-          rozdělují si plochu na „území“. Některé okno je vždy <b>vybráno</b>, s
-          tím lze interagovat pomocí nějakých speciálních klávesových zkratek.
-          Když se toto okno zavře, zbylá okna toto místo nějakým způsobem
-          zaberou pro sebe. A opačně když se nějaké okno přidá, ubere se nějakým
-          způsobem území již otevřeným oknům. Mezi nejpoužívanější tiling window
-          manages patří:
-        </p>
-
-        <ul class="compact-list">
-          <li><a target="_blank" href="https://i3wm.org/">i3</a>,</li>
-          <li>
-            <a target="_blank" href="https://github.com/baskerville/bspwm"
-              >bspwm</a
-            >,
-          </li>
-          <li>
-            <a target="_blank" href="https://herbstluftwm.org/">Herbstluftwm</a
-            >.
-          </li>
-        </ul>
-
-        <p>
-          Pro lepší představu jak tiling vypadá v praxi, doporučuji si pustit
-          kousek tohoto videa:
-          <a target="_blank" href="https://youtu.be/GKviflL9XeI?t=185"
-            >https://youtu.be/GKviflL9XeI?t=185</a
-          >.
-        </p>
-
-        <p>
-          U display managerů bylo zmíněno, že se při přihlašování vybírá window
-          manager. Těch na systému může být libovolný počet, třeba i tiling a
-          floating zároveň.
-        </p>
-
-        <p>
-          Příkladem okna, které mají někteří uživatelé neustále otevřené je tzv.
-          <i>panel</i> či <i>bar</i> (též <i>status bar</i> či <i>dock</i>).
-          Jedná se o onu klasickou lištu, která je třeba ve Windows ve výchozí
-          poloze na spodku obrazovky a zobrazuje např. ikony programů, které
-          jsou současně spuštěny. Existuje široká řada těchto barů. Často jsou
-          opět svázány s příslušnými desktop enviromnets (např. XFCE →
-          xfce-panel), Ale existuje celá řada různých panelů, které jsou
-          nezávislé. Nejpopulárnější z nich jsou např.:
-        </p>
-
-        <ul class="compact-list">
-          <li>
-            <a target="_blank" href="https://polybar.github.io/">polybar</a>,
-          </li>
-          <li><a target="_blank" href="https://i3wm.org/i3bar/">i3bar</a>,</li>
-          <li>
-            <a target="_blank" href="https://codeberg.org/xmobar/xmobar"
-              >Xmobar</a
-            >.
-          </li>
-        </ul>
-
-        <div class="figure">
-          <div class="figure-content">
-            <img
-              src="https://raw.githubusercontent.com/adi1090x/files/master/polybar-themes/previews/grayblocks/md.gif"
-              class="figure-picture"
-              style="width: 100%"
-            />
-          </div>
-          <div class="figure-description">
-            <span>Obrázek 4: Příklad vysoce přizpůsobeného polybaru</span>
-          </div>
-        </div>
-
-        <h3>Další programy a systémy</h3>
-
-        <p>
-          Tím byly představeny všechny grafické typy programů v tomto článku.
-          Zde bych však chtěl ještě zmínit některé další typy, které lze volit v
-          tomto modulárním stroji, jímž jsou moderní linuxové desktopy.
-        </p>
-
-        <p>
-          Co se týče audia v Linuxu, existují 2 audiové systémy.
-          <a
-            target="_blank"
-            href="https://www.freedesktop.org/wiki/Software/PulseAudio/"
-            >PulseAudio</a
-          >
-          a <a target="_blank" href="https://pipewire.org/">PipeWire</a>. Přitom
-          PipeWire je novější alternativa PulseAudia. Funguje lépe a je více
-          podporován ze softwarového hlediska. Na většině systémů však přetrvává
-          PulseAudio do dnes.
-        </p>
-
-        <p>
-          Dalším často obměňovaným komponentem linuxového desktopu je
-          <i>průzkumník souborů</i> (file explorer/manager). Zde se také
-          propisuje posedlost linuxářů přenést všechno do terminálu. Existují
-          totiž dva typy: grafické průzkumníky a terminálové průzkumníky. Mezi
-          ty nejpoužívanější grafické patří:
-        </p>
-
-        <ul class="compact-list">
-          <li>
-            <a target="_blank" href="https://docs.xfce.org/xfce/thunar/start"
-              >Thunar</a
-            >,
-          </li>
-          <li>
-            <a target="_blank" href="https://apps.kde.org/dolphin/">Dolphin</a>,
-          </li>
-          <li>
-            <a target="_blank" href="https://github.com/linuxmint/nemo">Nemo</a
-            >.
-          </li>
-        </ul>
-
-        Mezi ty terminolvé patří např.:
-
-        <ul class="compact-list">
-          <li>
-            <a target="_blank" href="https://github.com/ranger/">Ranger</a>,
-          </li>
-          <li>
-            <a target="_blank" href="https://github.com/gokcehan/lf">Lf</a>.
-          </li>
-        </ul>
-
-        <p>
-          Když už byly nakousnuty terminálové průzkumníky souborů, je třeba už
-          konečně zmínit terminálové emulátory samotné. Ty se liší zejména
-          vzhledem a přizpůsobitelností. Nejpopulárnějšími jsou:
-        </p>
-
-        <ul class="compact-list">
-          <li>
-            <a target="_blank" href="https://invisible-island.net/xterm/"
-              >xterm</a
-            >,
-          </li>
-          <li>
-            <a target="_blank" href="https://alacritty.org/">Alacritty</a>,
-          </li>
-          <li>
-            <a target="_blank" href="https://wezfurlong.org/wezterm/index.html"
-              >WezTerm</a
-            >,
-          </li>
-          <li>
-            <a target="_blank" href="https://sw.kovidgoyal.net/kitty/">kitty</a
-            >.
-          </li>
-        </ul>
-
-        <p>
-          Skuteční fajnšmekeři používají více terminálů otevřených najednou. To
-          lze udělat pomocí window managerů, ale existují možnosti, jak tohoto
-          dosáhnout přímo na úrovni terminálu – mít otevřeno jedno terminálové
-          okno a v něm přepínat mezi „záložkami“ terminálů, které uchovávají
-          svůj stav. Implementace se různí. Nejznámější je
-          <a target="_blank" href="https://github.com/tmux/tmux/wiki">tmux</a>
-          (od <i>Terminal MUltipleXer</i>). Ten lze použít v jakémkoliv
-          terminálovém emulátoru. U některých terminálových emulátorů je správa
-          „záložek“ zabudovaná přímo do nich, třeba jako u zmíněného WezTermu.
-        </p>
-
-        <p>
-          Další zmíněníhodnou kategorií programů jsou tzv.
-          <i>application launchers</i>. Tento název je avšak zavádějící, nemusí
-          jen spouštět aplikace, ale cokoliv. Většinou si je člověk nabinduje na
-          nějakou klávesovou zkratku. Po jejich spuštění se zobrazí nějaký
-          seznam. Povětšinou to bývá seznam spustitelných souborů (které jsou v
-          <code>$PATH</code>). V tomto seznamu lze také vyhledávat. Je to tedy
-          takové start menu. Ve skutečnosti jde použít i k jiným věcem – seznam
-          lze libovolně přizpůsobit. Například jeden z dalších populárních
-          použití je udělat ze seznamu „emoji toolbar“. Dva nejpopulárnější
-          jsou:
-        </p>
-
-        <ul class="compact-list">
-          <li>
-            <a target="_blank" href="https://davatorium.github.io/rofi/">Rofi</a
-            >,
-          </li>
-          <li>
-            <a target="_blank" href="https://wiki.archlinux.org/title/Dmenu"
-              >Dmenu</a
-            >.
-          </li>
-        </ul>
-
-        <div class="figure">
-          <div class="figure-content">
-            <img
-              src="/media/linux-rice/rofi.webp"
-              class="figure-picture"
-              style="width: 75%"
-            />
-          </div>
-          <div class="figure-description">
-            <span
-              >Obrázek 5: Rofi použitý jako application launcher a emoji
-              toolbar</span
-            >
-          </div>
-        </div>
-
-        <p>
-          Další funkci, kterou používá často řádný power-user je
-          <i>screenshotování</i>. Často chce člověk screenshoty rychle upravit a
-          někam odeslat; třeba rovnou na imgur. Některé z nich jsou:
-        </p>
-
-        <ul>
-          <li>
-            <a
-              target="_blank"
-              href="https://docs.xfce.org/apps/screenshooter/start"
-              >xfce4-screenshooter</a
-            >
-            (dostupný v každé XFCE instalaci, ale funkční i samostatně),
-          </li>
-          <li>
-            <a target="_blank" href="https://flameshot.org/">Flameshot</a>,
-          </li>
-          <li>
-            <a target="_blank" href="https://apps.kde.org/spectacle/"
-              >Spectacle</a
-            >,
-          </li>
-        </ul>
-
-        <p>
-          Dalším modularizovatelnou součástí jsou <i>shelly</i>. Shell je
-          program, jenž interpretuje kód psaný do terminálu. Na drtivé většině
-          systému je defaultně
-          <a target="_blank" href="https://www.gnu.org/software/bash/">bash</a>.
-          Je tak populární, že shell a bash se někdy používá vzájemně
-          zaměnitelně. Existují i další volby. Jedním takovým „general-purpose“
-          shellem je
-          <a target="_blank" href="https://zsh.sourceforge.io/">zsh</a>. Ten je
-          atraktivní tím, že toho dokáže mnohem víc. Toho dosahuje hlavně díky
-          snadné rozšířitelnosti pomocí komunitních plug-inů. Například nabízí
-          našeptávání a syntax highlighting (přímo v shellu). Dalším podobným je
-          <a target="_blank" href="https://fishshell.com/">fish shell</a>.
-          Současně se také objevují různé shelly, které jsou zaměřené přímo na
-          nějakou specifickou věc. Jedním z nich je
-          <a target="_blank" href="https://www.nushell.sh/">nushell</a>, který
-          je zaměřen na zpracovávání dat.
-        </p>
-
-        <p>
-          Nutno ještě podotknout, že shellů může být na systému třeba desítky a
-          je velice jednoduché mezi nimi přepínat. Tedy to není „jeden nebo
-          nic“. Každý shell má také speciální konfigurační soubor, který se
-          spustí vždy, když nastartuje daný shell. Tento konfigurák často končí
-          na <code>rc</code>. Třeba bash má <code>.bashrc</code> a zsh má
-          <code>.zshrc</code>.
-        </p>
-
-        <p>
-          Abychom dorazili ty terminály – <i>prompty</i>. Prompt je v terminálu
-          text, který se zobrazí na řádku (či řádcích) předtím, než uživatel
-          zapíše nějaký příkaz. Často zobrazuje název uživatele, název stroje a
-          současný adresář:
-        </p>
-
-        <div class="figure">
-          <div class="figure-content">
-            <img
-              src="/media/linux-rice/prompt.png"
-              class="figure-picture"
-              style="height: 5em; width: auto"
-            />
-          </div>
-          <div class="figure-description">
-            <span>Obrázek 6: Můj osobní prompt</span>
-          </div>
-        </div>
-
-        <p>
-          Klasicky si lze jednodušše prompt nakonfigurovat nastavením speciální
-          proměnné <code>$PS1</code> v konfiguračním souboru používaného shellu.
-          Lze použít různé nástroje pro vygenerování tohoto nastavení, třeba
-          <a target="_blank" href="https://bash-prompt-generator.org/">tento</a
-          >.
-        </p>
-
-        <p>
-          Jiný způsob je použít pro prompt externí program jako třeba
-          <a target="_blank" href="https://starship.rs/">starship</a>. V něm lze
-          nakonfigurovat šiřší škálu funkcionalit, třeba zobrazovat současnou
-          git branch.
-        </p>
-
-        <h3>Dotfiles</h3>
-
-        <p>
-          Pokud se vydáte na cestu si přizpůsobit svůj systém na maximum, bylo
-          by velice nešťastné replikovat konfiguraci na jiném stroji. To může
-          trvat velice – velice dlouho. Nejčastější způsob, jak se s tímto
-          vypořádat, je pomocí tzv. <i>dotfiles</i>. Dotfiles je, volně řečeno,
-          kolekce konfiguračních souborů, skriptů, a dalších podpůrných souborů
-          pro programy na daném systému. (Tyto soubory často začínají tečkou,
-          odtud „dotfiles“). Tuto kolekci si člověk následně synchronizuje přes
-          git a hostuje třeba na GitHubu. Příklad takového repozitáře lze najít
-          <a href="https://github.com/dynamo58/dotfiles">zde</a>.
-        </p>
-
-        <p>
-          Pak lze dosáhnout situace, kde by byl proces přízpůsobení nového
-          stroje následující:
-        </p>
-
-        <ol class="compact-list">
-          <li>Na systému se nainstaluje chtěná Linux distribuce,</li>
-          <li>Naklonuje se repozitář s dotfiles,</li>
-          <li>
-            Spustí se skript z repozitáře, který stáhne chtěné programy a vykoná
-            další konfigurace systému,
-          </li>
-          <li><i>systém je připraven k plnému použití</i>.</li>
-        </ol>
-
-        <p>Tento celý proces může trvat třeba jen 15 minut.</p>
-
-        <h3>Bonus 1: suckless</h3>
-
-        <p>
-          Pokud spadnete opravdu hluboko do zaječí díry přízpůsobování Linuxu
-          narazíte často na pojmy jako <i>bloat</i> („nabobtnalý“). Toto je
-          slovíčko s negativní konotací označující software, který se danému
-          člověku zdá zbytečně přehnaný. Je naplněn různým odpadem, který člověk
-          přece nemůže potřebovat a jenom mu to hyzdí jeho perfektní minimální
-          Linuxovou instalaci. Lidé, kteří toto slovíčko házejí jako vidlema
-          seno často odkazují, jako na modlu, na <i>suckless</i> software. To je
-          software od
-          <a target="_blank" href="https://suckless.org/">suckless.org</a>.
-          Jedná se o minimalistické implementace některých zde zmíněných
-          kategorií softwaru.
-        </p>
-
-        <h3>Bonus 2: unixp*rn</h3>
-
-        <p>
-          Pokud vyšperkujete svůj desktop na maximum, můžete vzhled svého
-          desktopu sdílet na subredditu
-          <a target="_blank" href="https://www.reddit.com/r/unixporn/"
-            >unixp*rn</a
-          >. Najednou se ze stínů vydrápe tlupa glorifikovaných obyvatelů
-          suterénů, kteří vaší konfiguraci označí za bloat.
-        </p>
-      </div>
-    </div>
-
-    <div id="notification-container"></div>
-  </body>
+        <div id="notification-container"></div>
+    </body>
 </html>
