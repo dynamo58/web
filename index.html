@@ -1,175 +1,126 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/styles/index.css" />
-        <link rel="icon" href="/media/favicon.svg" type="image/svg+xml">
-        <script src="/scripts/main.js"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <title>smolik.xyz</title>
-    </head>
-    <body>
-        <button id="theme-toggle" title="Přepnout motiv">🌓</button>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/index.css" />
+    <link rel="icon" href="/media/favicon.svg" type="image/svg+xml">
+    <script src="/scripts/main.js"></script>
+    <script src="/scripts/data.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>smolik.xyz</title>
+</head>
+
+<body>
+    <button id="theme-toggle" title="Přepnout motiv">🌓</button>
 
 
-        <header>
-            <h1>🌻 Ahoj!</h1>
-        </header>
+    <header>
+        <h1>🌻 Ahoj!</h1>
+    </header>
 
-        <div class="box">
-            <div class="about-wrapper">
-                <div class="about-text">
-                    <h2>📚 O mně</h2>
-                    <p>
-                        Jmenuji se Marek Smolík. Je mi 22 let a studuji
-                        učitelství matematiky a informatiky na
-                        <span class="highlight">MFF CUNI</span> v Praze třetím
-                        rokem. Předtím jsem vystudoval čtyřletý maturitní obor
-                        informační technologie (18-20-M/01) na
-                        <span class="highlight">SŠSI</span> v Táboře.
-                    </p>
-                    <p>
-                        Mezi mé zájmy patří čtení, programování, sporty (túry,
-                        běhání, cyklistika), jazyky a zeměpis.
-                    </p>
-                </div>
-                <div class="about-image">
-                    <img
-                        src="/media/avatar.png"
-                        alt="Marek Smolík"
-                        class="profile-image"
-                    />
-                </div>
-            </div>
-
-            <div class="section">
-                <h3>📝 Moje články</h3>
-                <ul>
-                    <li>
-                        <a href="/content/articles/linux-ricing/cs/"
-                            >Příručka pro přizpůsobení Linuxového desktopu</a
-                        >
-                    </li>
-                </ul>
-            </div>
-
-            <div class="section">
-                <h3>📘 Dobrá kniha</h3>
-
+    <div class="box">
+        <div class="about-wrapper">
+            <div class="about-text">
+                <h2>📚 O mně</h2>
                 <p>
-                    <script>
-                        document.write(getSerializedBook());
-                    </script>
+                    Jmenuji se Marek Smolík. Je mi 22 let a studuji
+                    učitelství matematiky a informatiky na
+                    <span class="highlight">MFF CUNI</span> v Praze třetím
+                    rokem. Předtím jsem vystudoval čtyřletý maturitní obor
+                    informační technologie (18-20-M/01) na
+                    <span class="highlight">SŠSI</span> v Táboře.
+                </p>
+                <p>
+                    Mezi mé zájmy patří čtení, programování, sporty (túry,
+                    běhání, cyklistika), jazyky a zeměpis.
                 </p>
             </div>
-
-            <div class="section">
-                <h3>🔗 Kde mě lze najít</h3>
-                <div class="social-icons">
-                    <a
-                        href="https://github.com/dynamo58"
-                        target="_blank"
-                        title="GitHub"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="1em"
-                            height="1em"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-github-icon lucide-github"
-                        >
-                            <path
-                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
-                            />
-                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                        </svg>
-                        <span> dynamo58</span>
-                    </a>
-
-                    <script>
-                        const addr = mail();
-
-                        document.write(
-                            `<a href="mailto:${addr}" title="E-mail"><span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> ${addr}</span></a>`,
-                        );
-                    </script>
-                    <a
-                        href="https://discord.com/"
-                        target="_blank"
-                        title="Discord"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="1em"
-                            height="1em"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-discord-icon lucide-discord"
-                        >
-                            <path
-                                d="M20 4.5A19.8 19.8 0 0 0 15.36 3a13.33 13.33 0 0 0-.67 1.38 18.5 18.5 0 0 0-5.38 0A13.3 13.3 0 0 0 8.64 3 19.84 19.84 0 0 0 4 4.5C2 8.09 1.33 11.54 1.6 15a19.84 19.84 0 0 0 5.2 2.64 14.9 14.9 0 0 0 1.23-2 9.75 9.75 0 0 1-1.95-.9c.16-.12.3-.25.44-.39a11 11 0 0 0 9.06 0c.14.14.28.27.44.39a9.75 9.75 0 0 1-1.95.9 14.9 14.9 0 0 0 1.23 2A19.84 19.84 0 0 0 22.4 15c.27-3.46-.4-6.91-2.4-10.5ZM9.5 13.3c-.98 0-1.78-.88-1.78-1.95s.8-1.95 1.78-1.95 1.79.87 1.78 1.95-.8 1.95-1.78 1.95Zm5 0c-.98 0-1.78-.88-1.78-1.95s.8-1.95 1.78-1.95 1.79.87 1.78 1.95-.8 1.95-1.78 1.95Z"
-                            />
-                        </svg></span> spalovac_mrtvol</span>
-                    </a>
-                    <a
-                        href="https://x.com/mrtvol_spalovac"
-                        target="_blank"
-                        title="X"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="1em"
-                            height="1em"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-x-icon lucide-x"
-                        >
-                            <path d="M4 4l16 16" />
-                            <path d="M20 4L4 20" />
-                        </svg><span
-                            >
-                            mrtvol_spalovac</span
-                        >
-                    </a>
-
-                    <a
-                        href="https://www.strava.com/athletes/86242658"
-                        target="_blank"
-                        title="X"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="1em"
-                             height="1em"
-                             viewBox="0 0 64 64"
-                        >
-                            <path d="M41.03 47.852l-5.572-10.976h-8.172L41.03 64l13.736-27.124h-8.18" fill="#ff5a08"/>
-                            <path d="M27.898 21.944l7.564 14.928h11.124L27.898 0 9.234 36.876H20.35" fill="#ffb28e"/>
-                        </svg>
-
-                        <span
-                            >
-                            Marek Smolík</span
-                        >
-                    </a>
-                </div>
+            <div class="about-image">
+                <img src="/media/avatar.png" alt="Marek Smolík" class="profile-image" />
             </div>
         </div>
 
-        <!-- <div class="content">
+        <div class="section">
+            <h3>📝 Moje články</h3>
+            <ul>
+
+                <script>
+                    ARTICLES.forEach(art => {
+                        document.write(`
+                            <li>
+                                <a href="${art.langs[0][2]}">${art.langs[0][1]}</a>    
+                            </li>
+                        `);
+                    });
+                </script>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>📘 Dobrá kniha</h3>
+
+            <p>
+                <script>
+                    document.write(getSerializedBook());
+                </script>
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>🔗 Kde mě lze najít</h3>
+            <div class="social-icons">
+                <a href="https://github.com/dynamo58" target="_blank" title="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-github-icon lucide-github">
+                        <path
+                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                    </svg>
+                    <span> dynamo58</span>
+                </a>
+
+                <script>
+                    const addr = mail();
+
+                    document.write(
+                        `<a href="mailto:${addr}" title="E-mail"><span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> ${addr}</span></a>`,
+                    );
+                </script>
+                <a href="https://discord.com/" target="_blank" title="Discord">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-discord-icon lucide-discord">
+                        <path
+                            d="M20 4.5A19.8 19.8 0 0 0 15.36 3a13.33 13.33 0 0 0-.67 1.38 18.5 18.5 0 0 0-5.38 0A13.3 13.3 0 0 0 8.64 3 19.84 19.84 0 0 0 4 4.5C2 8.09 1.33 11.54 1.6 15a19.84 19.84 0 0 0 5.2 2.64 14.9 14.9 0 0 0 1.23-2 9.75 9.75 0 0 1-1.95-.9c.16-.12.3-.25.44-.39a11 11 0 0 0 9.06 0c.14.14.28.27.44.39a9.75 9.75 0 0 1-1.95.9 14.9 14.9 0 0 0 1.23 2A19.84 19.84 0 0 0 22.4 15c.27-3.46-.4-6.91-2.4-10.5ZM9.5 13.3c-.98 0-1.78-.88-1.78-1.95s.8-1.95 1.78-1.95 1.79.87 1.78 1.95-.8 1.95-1.78 1.95Zm5 0c-.98 0-1.78-.88-1.78-1.95s.8-1.95 1.78-1.95 1.79.87 1.78 1.95-.8 1.95-1.78 1.95Z" />
+                    </svg></span> spalovac_mrtvol</span>
+                </a>
+                <a href="https://x.com/mrtvol_spalovac" target="_blank" title="X">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-x-icon lucide-x">
+                        <path d="M4 4l16 16" />
+                        <path d="M20 4L4 20" />
+                    </svg><span>
+                        mrtvol_spalovac</span>
+                </a>
+
+                <a href="https://www.strava.com/athletes/86242658" target="_blank" title="X">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 64 64">
+                        <path d="M41.03 47.852l-5.572-10.976h-8.172L41.03 64l13.736-27.124h-8.18" fill="#ff5a08" />
+                        <path d="M27.898 21.944l7.564 14.928h11.124L27.898 0 9.234 36.876H20.35" fill="#ffb28e" />
+                    </svg>
+
+                    <span>
+                        Marek Smolík</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="content">
             Víme, že AZ je jednozn. určeno dvojící odpovídajících si bodů a svým asoc. hom. Jenže u SZ musí i zachovávat sk. č.
 
             Buď \(f\) AZ \(\mathbb{E}_n\to\mathbb{E}'\), \(B=\braket{\vec{e}_1,\dots,\vec{e}_n}\) báze \(V_n\). Je-li \(f\) SZ, zachovává sk. č., tedy \[\bar{f}(\vec{e}_i) \cdot \bar{f}(\vec{e}_j) = \bar{f}(\vec{e}_i \cdot \vec{e}_j)\quad \forall i,j=1,\dots,n.\] Obráceně platí-li tyto vztahy, je pro každé dva vekt. \(\vec{x} = \sum_{i=1}^nx_i\vec{e}_i\quad \vec{y}=\sum_{i=1}^ny_i\vec{e}_i\)splněna rovnost \[\bar{f}(\vec{x})\cdot\bar{f}(\vec{y})=\sum_{i,j=1}^nx_iy_j\bar{f}(\vec{e}_i)\cdot\bar{f}(\vec{e}_j)=\sum_{i,j=1}^nx_iy_j\vec{e}_i\cdot\vec{e}_j=\vec{x}\cdot\vec{y}.\]
@@ -188,8 +139,9 @@
             </div>
         </div> -->
 
-        <!-- <div class="footer">© 2025 Marek Smolík</div> -->
+    <!-- <div class="footer">© 2025 Marek Smolík</div> -->
 
-        <!-- <div id="notification-container"></div> -->
-    </body>
+    <!-- <div id="notification-container"></div> -->
+</body>
+
 </html>
