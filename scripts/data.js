@@ -28,9 +28,16 @@ const BOOKS = [
 
 const ARTICLES = [
     {
+        name: "latex-bugs",
+        langs: [
+            ["cs", "Časté typografické a matematické prohřešky v LaTeXu", "content/articles/latex-bugs/cs/"],
+        ],
+    },
+    {
         name: "linux-ricing",
         langs: [
             ["cs", "Příručka pro přizpůsobení Linuxového desktopu", "content/articles/linux-ricing/cs/"],
         ],
     }
+
 ];

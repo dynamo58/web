@@ -42,6 +42,12 @@ header p {
     margin: 0 auto;
 }
 
+pre,
+code {
+    color: var(--main-fg-color) !important;
+    background-color: var(--seco-bg-color) !important;
+}
+
 .content {
     max-width: 850px;
     margin: 2rem auto;
@@ -148,6 +154,10 @@ a:hover {
     animation:
         fadeIn 0.5s forwards,
         fadeOut 0.5s 2.5s forwards;
+}
+
+.stat {
+    font-weight: bold;
 }
 
 .about-wrapper {

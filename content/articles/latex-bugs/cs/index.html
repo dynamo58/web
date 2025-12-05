@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/index.css" />
+    <link rel="icon" href="/media/favicon.svg" type="image/svg+xml" />
+    <script defer src="/scripts/main.js"></script>
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script> -->
+    <!-- <script>
+        hljs.highlightAll();
+    </script> -->
+
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+    <title>smolik.xyz</title>
+</head>
+
+<body>
+    <button id="theme-toggle" title="Přepnout motiv">🌓</button>
+    <div class="contentWrapper">
+        <div class="content">
+            <div class="breadcrumbs">
+                <a href="/" class="breadcrumb-item">Domů</a>
+                <div class="breadcrumb-divider">/</div>
+                <a href="#" class="breadcrumb-item">latex-bugs</a>
+            </div>
+
+            <h1>Časté typografické a matematické prohřešky v LaTeXu</h1>
+            <div class="article-meta">
+                <span>Autor: <span class="stat">Marek Smolík</span></span><br />
+                <span>Publikováno: <span class="stat">05. 12. 2025</span></span><br />
+                <span>Aktualizace: <span class="stat">05. 12. 2025</span></span><br />
+                <span>Čas na přečtení: <span class="stat">~7 minut</span></span>
+            </div>
+
+            <hr />
+            <div style="margin-bottom: 2em"></div>
+
+
+            <!DOCTYPE html>
+            <html lang="cs">
+
+            <head>
+                <meta charset="UTF-8">
+                <title>Úvod do LaTeXu</title>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+                <style>
+                    body {
+                        font-family: serif;
+                        line-height: 1.6;
+                        margin: 2rem;
+                    }
+
+                    pre {
+                        background-color: #f4f4f4;
+                        padding: 1rem;
+                        overflow-x: auto;
+                    }
+
+                    code {
+                        font-family: monospace;
+                    }
+
+                    h2,
+                    h3 {
+                        margin-top: 1.5rem;
+                    }
+
+                    p {
+                        margin: 2em 0;
+                    }
+                </style>
+            </head>
+
+            <body>
+
+                <!DOCTYPE html>
+                <html lang="cs">
+
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Článek o LaTeXu</title>
+                </head>
+
+                <body>
+
+                    <h2>1 Úvod</h2>
+
+                    <p>\(\LaTeX\) je často používaný pro sázení odborných či polodborných matematických textů. Není to
+                        však perfektní
+                        nástroj, který by vychytával a opravoval chyby či neduhy těch, kteří jej píší. Navíc většina
+                        lidí nabere základní
+                        znalosti syntaxu a používání \(\LaTeX\)u narychlo. Často proto, že to po nich někdo vyžaduje
+                        (například profesor na
+                        univerzitě).</p>
+
+                    <p>Tyto okolnosti vedou k tomu, že si lidé osvojí návyky, kterých se pak těžce zbavují. V některých
+                        případech dokonce
+                        propagují tyto nekalosti dále.</p>
+
+                    <p>V tomto článku bych se chtěl zaměřit na časté chyby, kterých se lidé dopouštějí. Cílem zde není
+                        být pedantický, ale
+                        abychom všichni drželi jednotný, čistý a krásný styl.</p>
+
+                    <h2>2 Obecné chyby</h2>
+
+                    <h3>2.1 Čeština</h3>
+
+                    <p>Pro správnou podporu češtiny a jejích symbolů použijeme v hlavičce následující balíčky:</p>
+
+                    <pre><code>\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[czech]{babel}</code></pre>
+
+                    <h3>2.2 Uvozovky</h3>
+
+                    <p>Tento neduh se vyskytuje všude v digitálním světě. "Toto" jsou anglické uvozovky. V češtině
+                        používáme „tyhle“. Máme-li v hlavičce <code>\usepackage[czech]{babel}</code>, můžeme uvozovky
+                        psát
+                        pohodlně
+                        <code>\uv{takto}</code>.
+                    </p>
+
+                    <h3>2.3 Seznamy a věty</h3>
+
+                    <p>Pokud je součástí věty seznam, musí být řádné zaintegrován interpunkčními znaménky. Například:
+                    </p>
+
+                    <pre><code>V bodě \(x\) má funkce \(f\) inflexní bod, pokud:
+\begin{itemize}
+    \item pro \(f\) v \(x\) existují derivace až do řádu 3 (včetně),
+    \item \(f''(x)=0\),
+    \item \(f'''(x)\neq0\).
+\end{itemize}</code></pre>
+
+                    <h3>2.4 Mezery</h3>
+
+                    <p>V češtině nesmí být neslabičná předložka (např. <em>u</em>, <em>v</em>, <em>s</em>, <em>k</em>,
+                        <em>o</em>,
+                        <em>na</em>) na konci řádku. Tomu zabráníme tak, že mezi předložku a následující slovo vložíme
+                        nezlomitelnou mezeru
+                        <code>~</code> (např. <code>k~mostu</code>).
+                    </p>
+
+                    <p>Nezlomitelná mezera musí být též mezi hodnotou a jednotkou (např. <code>100~kg</code> – sto
+                        kilogramů). To však neplatí, pokud používáme výraz jako přívlastek (např. <code>100\,kg</code> –
+                        stokilogramový).</p>
+
+                    <p>Mmj. text v závorkách nesmí mít žádné odsazení od závorek samotných. <code>( Toto)</code> tedy
+                        korektní není, kdežto
+                        <code>(toto)</code> už ano.
+                    </p>
+
+                    <h2>3 Matematické chyby</h2>
+
+                    <h3>3.1 Proměnné vs. konstanty</h3>
+
+                    <p>V matematickém módu jsou ve výchozím režimu všechna písmena vykreslována kurzívou. To je správně
+                        pro proměnné.
+                        Problém nastává, když chceme vysázet konstantu. Konstanty musí být zapisovány normálním řezem.
+                    </p>
+
+                    <p>Tedy pokud máme funkci \(f(x)=x^2+5x-6\), výchozí vykreslování je korektní:</p>
+
+                    <pre><code>$f(x)=x^2+5x+6$</code></pre>
+
+                    <p>Avšak pokud např. definujeme kvadratickou funkci \(f(x)=\mathrm{a}x^2+\mathrm{b}x+\mathrm{c}\),
+                        musíme pro
+                        \(\mathrm{a}\), \(\mathrm{b}\), \(\mathrm{c}\) zvolit normální řez. To uděláme v matematickém
+                        módu pomocí makra
+                        <code>\mathrm</code> (<code>rm</code> = <i>roman</i>, normální řez):
+                    </p>
+
+                    <pre><code>$f(x)=\mathrm{a}x^2+\mathrm{b}x+\mathrm{c}$</code></pre>
+
+                    <p>Osobně bych doporučil si pro makro <code>\mathrm{...}</code> udělat zkratku:</p>
+
+                    <pre><code>\newcommand{\mr}[1]{\mathrm{#1}}</code></pre>
+
+                    <p>Pak by se nám výraz zjednodušil na:</p>
+
+                    <pre><code>$f(x)=\mr{a}x^2+\mr{b}x+\mr{c}$</code></pre>
+
+                    <p>Hodně častými prohřešky jsou konstanty jako \(\mathrm{e}\) (Eulerovo číslo) a \(\mathrm{i}\)
+                        (komplexní jednotka).
+                        Nebo například při integraci používá hodně lidí (i mezinárodně) \(dx\), což není správně.
+                        „\(d\)“ jakožto operátor
+                        musí být vykresleno normálním řezem – <code>\mr{d}x</code>. Pak dostáváme korektní a krásné
+                        sazby jako:</p>
+
+                    <p>\[
+                        \int_{\mathbb{R}}\mathrm{e}^{-x^2}\,\mathrm{d}x.
+                        \]</p>
+
+                    <p>S makry jako <code>\rm{}</code>, <code>\mathrm{}</code>, <code>\textbf{}</code>,
+                        <code>bf{}</code>, ad. jsou často
+                        trable. Pokud se nacházíme v matematickém módu, poté bychom:
+                    </p>
+
+                    <ul>
+                        <li>pro zvýraznění proměnné použít <code>\boldsymbol{}</code> z balíčku <code>amsmath</code>;
+                        </li>
+                        <li>neměli pro úpravu proměnných používat matematická makra <code>\mathbf{}</code> – to změní
+                            kurzivní řez na
+                            normální;</li>
+                        <li>měli pro souvislý text (slova) používat textová makra (<code>\text{}</code>,
+                            <code>\textit{}</code>,
+                            <code>\textbf{}</code>, ...) použít jen v krajním případě, kdy v matematickém módu
+                            potřebujeme napsat souvislý
+                            text (slovo);
+                        </li>
+                        <li>neměli používat zastaralá makra jako <code>\bf{}</code>, <code>\it{}</code> a
+                            <code>\rm{}</code>.
+                        </li>
+                    </ul>
+
+                    <h3>3.2 Číselné obory</h3>
+
+                    <p>Číselné obory (přirozená čísla, celá čísla, reálná čísla, ...) sázíme pomocí makra
+                        <code>\mathbb{}</code> (`bb` =
+                        blackboard bold, tj. tučná písmena psaná na tabuli). Takže například nepíšeme pro reálná čísla
+                        `R`, ale
+                        <code>\mathbb{R}</code>.
+                    </p>
+
+                    <h3>3.3 Operátory</h3>
+
+                    <p>Pokud jste někdy v \(\LaTeX\)u psali goniometrické funkce, jistě jste narazili na to, že
+                        neexistuje žádné makro pro
+                        tangens <code>\tg{x}</code>. To je proto, že anglosaské země, pro které je \(\LaTeX\)
+                        optimalizován, značí tangens
+                        jako <code>\operatorname{tan}</code>. Řešením NENÍ prosté použití <code>tan(x)</code>, protože
+                        potom jsou symboly
+                        interpretovány v matematickém modu jako proměnné.</p>
+
+                    <p>Musíme naznačit, že se jedná o operátor, tj. použijeme <code>\operatorname{tg}(x)</code>. To
+                        samozřejmě není
+                        praktické, použijeme tedy v hlavičce speciálního makra:</p>
+
+                    <pre><code>\DeclareMathOperator{\tg}{tg}</code></pre>
+
+                    <p>Pak už můžeme krásně psát <code>\tg(x)</code>.</p>
+
+                    <h3>3.4 Horizontální čáry</h3>
+
+                    <p>Toto je velký kámen úrazu. Většina lidí všude píše spojovník (<strong>-</strong>). To není
+                        korektní. V češtině máme
+                        hlavně tři typy horizontálních čar:</p>
+
+                    <ul>
+                        <li>spojovník (<strong>-</strong>),</li>
+                        <li>pomlčka (<strong>–</strong>),</li>
+                        <li>minus (<strong>−</strong>).</li>
+                    </ul>
+
+                    <p>V \(\LaTeX\)u je používáme následovně:</p>
+
+                    <ul>
+                        <li>Spojovník máme na klávesnici. Používáme ho v textovém módu pro spojování slov (např.
+                            <em>je-li</em>).
+                        </li>
+                        <li>Pomlčku napíšeme v \(\LaTeX\)u jako dva spojovníky po sobě (<code>--</code>). Používáme ji v
+                            několika hlavních
+                            situacích:
+                            <ul>
+                                <li>vyjádření intervalu ve slovních spojeních (např. <em>čísla 1–10</em>, <em>trasa
+                                        Praha–Tábor</em>),</li>
+                                <li>nahrazení čárky u vsuvky (např. <em>Domníval se – a zcela správně – že to
+                                        nezvládne.</em>),</li>
+                                <li>náhrada slovesa <em>být</em> (např. <em>Rust – nejlepší programovací jazyk</em>).
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Minus je v matematickém módu vykreslován korektně automaticky, když použijeme spojovník
+                            (<code>$1-1=0$</code>).
+                        </li>
+                    </ul>
+
+                    <p>Mimochodem v anglosaském prostředí se někdy používá i dlouhá pomlčka (<em>em-dash</em>). Ta se
+                        zapíše jako
+                        <code>---</code>, ale v češtině nepoužívá.
+                    </p>
+
+                    <h3>3.5 Desetinná čárka, desetinná tečka</h3>
+
+                    <p>\(\LaTeX\) byl vytvořen v anglosaském prostředí. Význam teček a čárek je proto jiný než u nás.
+                        Kdežto my používáme
+                        desetinnou čárkou, anglosaské země mají desetinnou tečku. Čárka má v matematice jiný výnam –
+                        odděluje násobky
+                        tisíců. Například kdežto my bychom napsali \(9~999{,}99~\text{Kč}\); angličané by napsali
+                        \(9,999.99 £\) (případně
+                        by čárku vynechali).</p>
+
+                    <p>Takto je \(\LaTeX\) zadrátován. A my kolem toho navigoat. Použijeme trik se složenými závorkami
+                        <code>{}</code>.
+                        Pokud do nich totiž v matematickém modu vpíšeme symbol, \(\LaTeX\) vyresetuje pro daný symbol
+                        jeho odsazení. To
+                        chceme, jelikož anglosaský režim za <code>,</code> udělá mezeru, které se potřebujeme zbavit.
+                    </p>
+
+                    <p>Desetinnou čárku vysázíme následovně: <code>\pi\approx 3{,}14</code>.</p>
+
+                    <p>Podobně \(\LaTeX\) interpretuje například symbol <code>:</code> jako operátor pro dělení. Pokud
+                        ho chceme použít
+                        například pro vyjádření času, použijeme stejný trik: <code>21{:}37</code>.</p>
+
+                    <h3>3.6 Automatické závorky</h3>
+
+                    <p>Dost lidí neví, že existují automatické závorky. Problém je, že napíšeme-li
+                        <code>(\frac{1}{4})</code>, zlomek
+                        „vyleze“ ze závorek: \((\frac{1}{4})\). Někteří lidé toto vyřeší následovně
+                        <code>\big(\frac{1}{4}\big)</code>. To
+                        funguje, ale je to kostrbaté a nepraktické. \(\LaTeX\) poskytuje automatické škálování pro
+                        závorky pomocí maker
+                        <code>\left</code> a <code>\right</code> → <code>\left( \frac{1}{4} \right)</code>. Toto funguje
+                        i pro ostatní
+                        závorky.
+                    </p>
+
+                    <h3>3.6 Zlomky</h3>
+
+                    <p>Často není hezké používat <code>\frac{}{}</code> v souvislém textu, jelikož to příliš „vyčuhuje“.
+                        Lepší proto je
+                        zkrátka použít lomeno: <code>\pi/6</code>. Pokud však chceme, aby to vypadalo extra pěkně,
+                        doporučil bych balíček
+                        <code>nicefrac</code>. S ním již: <code>\nicefrac{\pi}{6}</code>.
+                    </p>
+
+                    <h3>3.7 Prostředí pro definice, věty, ... </h3>
+
+                    <p>V akademických textech chceme často číslovaná a krásně vysázená prostředí. Ta se dělají
+                        krásně
+                        pomocí balíčku
+                        <code>amsthm</code>. Kompletní příklad:
+                    </p>
+
+                    <pre><code>\documentclass{article}
+
+\usepackage{amsthm}
+\usepackage{amssymb}
+\newtheorem{theorem}{Věta}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definice}
+
+
+\begin{document}
+
+\section{Introduction}
+
+\begin{definition}
+Funkce $f$ je \emph{rostoucí}, pokud $x < y$ implikuje $f(x) \le f(y)$.
+\end{definition}
+
+\begin{theorem}[Moje tvrzení]
+Buď $f$ rostoucí funkce na $\mathbb{R}$. Pak je množství jejích bodů nespojitosti nejvíce čitatelně nekonečné.
+\end{theorem}
+
+\begin{proof}
+Důkaz zadán čtenáři jako cvičení.
+\end{proof}
+
+
+\end{document}</code></pre>
+
+                    <h3>3.8 Makra, makra, makra</h3>
+
+                    <p>Doporučil bych opravdu používat makra. Pokud píšete například něco z matematické analýzy,
+                        není
+                        sranda po tisící psát
+                        <code>\</code>-<code>m</code>-<code>a</code>-<code>t</code>-<code>h</code>-<code>b</code>-<code>b</code>-<code>{</code>-<code>R</code>-<code>}</code>.
+                        Dejte si tam makro :-)
+                    </p>
+
+                    <pre><code>\newcommand{\R}{\mathbb{R}}</code></pre>
+
+                    <h2>4 Konzistence, konzistence, konzistence</h2>
+
+                    <p>Ne pro všechno existují předpisy či doporučení. Například nikdo neříká, jakým písmem mají
+                        být
+                        označovány matice.
+                        Pokud není jasné, jak něco sázet, to nejmenší, co můžeme udělat, je se nějak rozhodnout
+                        a držet
+                        v celém (kon)textu
+                        jednotný styl.</p>
+
+
+                    <h2>5 Rozšiřující zdroje</h2>
+                    <ul>
+                        <li>Stránka RNDr. Petra Olšáka obsahuje mnoho pokladů: <a href="https://petr.olsak.net/"
+                                target="_blank">Petr
+                                Olsak</a></li>
+                        <li>OVERLEAF. <a href="https://www.overleaf.com/learn" target="_blank">Learn LaTeX -
+                                Overleaf,
+                                Online LaTeX
+                                Editor</a></li>
+                        <li>Wikibooks. <a href="https://en.wikibooks.org/wiki/LaTeX" target="_blank">LaTeX -
+                                Wikibooks,
+                                open books for
+                                an open world</a>
+                        </li>
+                        <li>Dobrá stránka pro vizuální generování tabulek: <a href="https://www.tablesgenerator.com/"
+                                target="_blank">Tables
+                                Generator</a></li>
+                    </ul>
+
+                </body>
+
+                </html>
+
+
+            </body>
+
+            </html>
+
+        </div>
+    </div>
+
+    <div id="notification-container"></div>
+</body>
+
+</html>
