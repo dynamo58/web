@@ -7,17 +7,7 @@
     <link rel="stylesheet" href="/styles/index.css" />
     <link rel="icon" href="/media/favicon.svg" type="image/svg+xml" />
     <script defer src="/scripts/main.js"></script>
-
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script> -->
-    <!-- <script>
-        hljs.highlightAll();
-    </script> -->
-
-
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-
     <title>smolik.xyz</title>
 </head>
 
@@ -55,16 +45,6 @@
                         font-family: serif;
                         line-height: 1.6;
                         margin: 2rem;
-                    }
-
-                    pre {
-                        background-color: #f4f4f4;
-                        padding: 1rem;
-                        overflow-x: auto;
-                    }
-
-                    code {
-                        font-family: monospace;
                     }
 
                     h2,
@@ -157,6 +137,14 @@
                         <code>(toto)</code> už ano.
                     </p>
 
+                    <h3>2.5 Datumy</h3>
+
+                    <p>
+                        Datum se píše vždy s mezerou za tečkou. Tato mezera musí být nezlomitelná. Například
+                        <code>5.~12.~2025</code> je
+                        správně.
+
+                    </p>
                     <h2>3 Matematické chyby</h2>
 
                     <h3>3.1 Proměnné vs. konstanty</h3>
@@ -195,7 +183,7 @@
                         sazby jako:</p>
 
                     <p>\[
-                        \int_{\mathbb{R}}\mathrm{e}^{-x^2}\,\mathrm{d}x.
+                        \LARGE \int_{\mathbb{R}}\mathrm{e}^{-x^2}\,\mathrm{d}x.
                         \]</p>
 
                     <p>S makry jako <code>\rm{}</code>, <code>\mathrm{}</code>, <code>\textbf{}</code>,
@@ -374,8 +362,8 @@ Důkaz zadán čtenáři jako cvičení.
                     <p>Doporučil bych opravdu používat makra. Pokud píšete například něco z matematické analýzy,
                         není
                         sranda po tisící psát
-                        <code>\</code>-<code>m</code>-<code>a</code>-<code>t</code>-<code>h</code>-<code>b</code>-<code>b</code>-<code>{</code>-<code>R</code>-<code>}</code>.
-                        Dejte si tam makro :-)
+                        <code>\mathbb{R}</code>.
+                        Dejte si tam makro. :-)
                     </p>
 
                     <pre><code>\newcommand{\R}{\mathbb{R}}</code></pre>

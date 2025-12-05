@@ -3,8 +3,8 @@
     --main-sa-font: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     --main-mo-font: "JetBrains Mono", monospace;
     --main-bg-color: #fffdf9;
-    --seco-bg-color: #fff1d0;
-    --tern-bg-color: #ffe6ab;
+    --seco-bg-color: #f0f0f0;
+    --tern-bg-color: #dfdfdf;
     --main-fg-color: #222;
     --main-ac-color: #f00;
     --seco-ac-color: #0f0;
@@ -46,6 +46,12 @@ pre,
 code {
     color: var(--main-fg-color) !important;
     background-color: var(--seco-bg-color) !important;
+}
+
+pre {
+    padding: 1rem;
+    overflow-x: auto;
+    font-family: monospace;
 }
 
 .content {
@@ -189,7 +195,7 @@ a:hover {
     top: 1rem;
     right: 1rem;
     z-index: 999;
-    background: var(--main-bg-color);
+    background-color: var(--seco-bg-color);
     color: var(--main-fg-color);
     border: 2px solid var(--main-fg-color);
     padding: 0.4rem 0.6rem;
@@ -213,6 +219,10 @@ a:hover {
 
 .breadcrumbs a {
     color: var(--main-ac-color);
+}
+
+.breadcrumb-item {
+    font-family: var(--main-mo-font);
 }
 
 @font-face {
