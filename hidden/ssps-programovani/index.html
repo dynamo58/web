@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Úvod do programování v Pythonu | SSPŠ</title>
+    <link rel="stylesheet" href="../../styles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/python.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+        <style>
+        body {
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 4rem;
+        }
+
+        .slide h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--main-ac-color);
+        }
+
+        .slide h2 {
+            font-size: 2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .slide h3 {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .slide ul {
+            margin: 1rem 0;
+            line-height: 1.8;
+        }
+
+        .slide li {
+            margin: 0.5rem 0;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: var(--seco-bg-color);
+            color: var(--main-fg-color);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--main-fg-color);
+            font-family: var(--main-mo-font);
+            font-size: 1rem;
+            z-index: 1000;
+        }
+
+        .code-example {
+            background-color: var(--seco-bg-color);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border: 2px solid var(--main-fg-color);
+        }
+
+        .code-example code {
+            font-family: var(--main-mo-font);
+            font-size: 1.1rem;
+        }
+
+        .note {
+            background-color: var(--seco-bg-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--main-ac-color);
+            border-radius: 4px;
+        }
+
+        .exercise {
+            background-color: var(--tern-bg-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            border: 3px solid var(--main-fg-color);
+        }
+
+        .exercise h3 {
+            margin-top: 0;
+            color: var(--main-ac-color);
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            border: 2px solid var(--main-fg-color);
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: var(--tern-bg-color);
+            font-weight: bold;
+        }
+
+        .comparison-table td {
+            background-color: var(--seco-bg-color);
+        }
+
+        .pros {
+            color: #0a0;
+        }
+
+        .cons {
+            color: var(--main-ac-color);
+        }
+
+        .centered-title {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .time-marker {
+            color: #888;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        kbd {
+            background-color: var(--seco-bg-color);
+            border: 2px solid var(--main-fg-color);
+            border-radius: 4px;
+            padding: 0.2rem 0.5rem;
+            font-family: var(--main-mo-font);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Titulní slide -->
+    <div class="slide active">
+        <div class="slide-content centered-title">
+            <h1>Úvod do programování</h1>
+            <p style="font-size: 1.5rem; margin-top: 2rem;">Marek Smolík</p>
+            <div style="margin-top: 3rem; padding: 2rem; border-radius: 12px; max-width: 80%; margin-left: auto; margin-right: auto;">
+                <img src="./media/link.png" alt="https://smolik.xyz/hidden/ssps-programovani/" style="width: 50%; height: 50%;">
+                <br>
+                <a style="font-size: 1.7rem; font-family: monospace;" href="https://smolik.xyz/hidden/ssps-programovani" target="_blank">https://smolik.xyz/hidden/ssps-programovani/</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Co je to programovací jazyk? -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Co je to programovací jazyk?</h1>
+        </div>
+    </div>
+
+    <!-- Slide 3: Interpret a kompilátor -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Interpretace vs. kompilace</h1>
+            <img src="./media/int_comp.svg" style="width: 90%;display:block;margin-left: auto;margin-right: auto;">
+        </div>
+    </div>
+
+    <!-- Slide 4: Interpret a kompilátor -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Ahoj světe!</h1>
+            <pre><code class="language-python">print("Ahoj světe!")</code></pre>
+        </div>
+    </div>
+
+
+
+
+    
+
+    <!-- Slide 2: I. Hodina - Úvod -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>I. HODINA</h1>
+            <h2>Osnova</h2>
+            <ul>
+                <li><span class="time-marker">(2m)</span> Administrace</li>
+                <li><span class="time-marker">(3m)</span> Aktivizace a motivace</li>
+                <li><span class="time-marker">(10m)</span> Kompilátory vs. interprety</li>
+                <li><span class="time-marker">(10m)</span> První program – Hello World</li>
+                <li><span class="time-marker">(5m)</span> Proměnné a datové typy</li>
+                <li><span class="time-marker">(15m)</span> Co je to algoritmus?</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 3: Aktivizace -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Aktivizace</h1>
+            <h2>Zkušenosti s programováním</h2>
+            <div class="exercise">
+                <h3>Otázky pro žáky:</h3>
+                <ul>
+                    <li>Kdo z vás již někdy programoval?</li>
+                    <li>Kdo slyšel o jazyce Python?</li>
+                    <li>Kdo použil jiný programovací jazyk? (Scratch, JavaScript, C++, ...?)</li>
+                    <li>K čemu podle vás může být programování užitečné?</li>
+                </ul>
+            </div>
+            <div class="note">
+                <strong>Cíl:</strong> Zjistit úroveň znalostí třídy a motivovat žáky k učení
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Kompilátory vs. Interprety - Úvod -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Kompilátory vs. Interprety</h1>
+            <h2>Jak fungují programovací jazyky?</h2>
+            <p>Počítač rozumí pouze <strong>strojovému kódu</strong> (binární kód – jedničky a nuly).</p>
+            <p>My ale píšeme programy v <strong>programovacích jazycích</strong> (Python, C++, Java...), které jsou pro člověka čitelnější.</p>
+            <div class="note">
+                <strong>Otázka pro žáky:</strong> Jak tedy počítač spustí náš program napsaný v Pythonu?
+            </div>
+            <p style="margin-top: 2rem;">Odpověď: Musíme ho <strong>přeložit</strong> nebo <strong>interpretovat</strong>!</p>
+        </div>
+    </div>
+
+    <!-- Slide 5: Kompilátor -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Kompilátor</h1>
+            <h2>Co je to kompilátor?</h2>
+            <p><strong>Kompilátor</strong> = program, který přeloží celý zdrojový kód najednou do strojového kódu.</p>
+            
+            <div class="code-example">
+                <p><strong>Proces kompilace:</strong></p>
+                <p>Zdrojový kód (např. C++) → <strong>Kompilátor</strong> → Spustitelný soubor (.exe)</p>
+            </div>
+
+            <h3>Příklady kompilovaných jazyků:</h3>
+            <ul>
+                <li>C, C++</li>
+                <li>Rust</li>
+                <li>Go</li>
+            </ul>
+
+            <div class="note">
+                <strong>Pro žáky:</strong> Představte si to jako překlad celé knihy najednou – dostanete ji celou přeloženou a pak ji můžete číst.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Interpret -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Interpret</h1>
+            <h2>Co je to interpret?</h2>
+            <p><strong>Interpret</strong> = program, který čte a vykonává kód řádek po řádku, bez předchozího překladu.</p>
+            
+            <div class="code-example">
+                <p><strong>Proces interpretace:</strong></p>
+                <p>Zdrojový kód (např. Python) → <strong>Interpret</strong> → Přímé vykonání</p>
+            </div>
+
+            <h3>Příklady interpretovaných jazyků:</h3>
+            <ul>
+                <li>Python</li>
+                <li>JavaScript</li>
+                <li>Ruby</li>
+            </ul>
+
+            <div class="note">
+                <strong>Pro žáky:</strong> Jako kdyby vám někdo překládal knihu nahlas, průběžně, stránku po stránce.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Porovnání -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Porovnání</h1>
+            <h2>Kompilátory vs. Interprety</h2>
+            <table class="comparison-table">
+                <tr>
+                    <th></th>
+                    <th>Kompilátor</th>
+                    <th>Interpret</th>
+                </tr>
+                <tr>
+                    <td><strong>Rychlost běhu</strong></td>
+                    <td class="pros">✓ Rychlejší</td>
+                    <td class="cons">✗ Pomalejší</td>
+                </tr>
+                <tr>
+                    <td><strong>Vývoj a testování</strong></td>
+                    <td class="cons">✗ Pomalejší (musí se kompilovat)</td>
+                    <td class="pros">✓ Rychlejší (okamžitá zpětná vazba)</td>
+                </tr>
+                <tr>
+                    <td><strong>Ladění chyb</strong></td>
+                    <td class="cons">✗ Složitější</td>
+                    <td class="pros">✓ Jednodušší</td>
+                </tr>
+                <tr>
+                    <td><strong>Přenositelnost</strong></td>
+                    <td class="cons">✗ Musí se překompilovat pro každý systém</td>
+                    <td class="pros">✓ Stejný kód funguje všude</td>
+                </tr>
+            </table>
+            <div class="exercise" style="margin-top: 2rem;">
+                <h3>Úkol pro žáky:</h3>
+                <p>Zkuste vymyslet další výhody a nevýhody každého přístupu!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: První program - Hello World -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>První program v Pythonu</h1>
+            <h2>Hello World!</h2>
+            <p>Tradičně první program v jakémkoliv jazyce jen vypíše text "Hello World".</p>
+            
+            <div class="code-example">
+                <code>print("Hello World!")</code>
+            </div>
+
+            <h3>Praktický úkol:</h3>
+            <div class="exercise">
+                <ol>
+                    <li>Zapněte počítače</li>
+                    <li>Otevřete Python (IDLE nebo editor dle vybavení)</li>
+                    <li>Napište: <code>print("Hello World!")</code></li>
+                    <li>Spusťte program!</li>
+                </ol>
+            </div>
+
+            <div class="note">
+                <strong>Tip:</strong> Zkuste změnit text mezi uvozovkami na cokoliv jiného!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Funkce print() -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Funkce print()</h1>
+            <h2>Co dělá print()?</h2>
+            <p><code>print()</code> je <strong>funkce</strong>, která vypíše text na obrazovku.</p>
+            
+            <h3>Příklady:</h3>
+            <div class="code-example">
+                <code>print("Ahoj!")</code><br>
+                <code>print("Mám rád programování")</code><br>
+                <code>print("Python je snadný")</code>
+            </div>
+
+            <div class="note">
+                <strong>Důležité:</strong> Text musí být v uvozovkách ("..." nebo '...')
+            </div>
+
+            <h3>Experimentujte:</h3>
+            <ul>
+                <li>Co se stane, když zapomenete uvozovky?</li>
+                <li>Můžete vypsat více řádků?</li>
+                <li>Zkuste vypsat čísla: <code>print(42)</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 10: Proměnné -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Proměnné</h1>
+            <h2>Ukládání dat do paměti</h2>
+            <p><strong>Proměnná</strong> = pojmenované místo v paměti, kam můžeme uložit hodnotu.</p>
+            
+            <div class="code-example">
+                <code>jmeno = "Petr"</code><br>
+                <code>vek = 15</code><br>
+                <code>print(jmeno)</code><br>
+                <code>print(vek)</code>
+            </div>
+
+            <h3>Pravidla pro pojmenování proměnných:</h3>
+            <ul>
+                <li>Může obsahovat písmena, čísla a podtržítko (_)</li>
+                <li>Nesmí začínat číslem</li>
+                <li>Je citlivé na velikost písmen (<code>vek</code> ≠ <code>Vek</code>)</li>
+                <li>Nepoužívat mezery</li>
+            </ul>
+
+            <div class="note">
+                <strong>Dobrá praxe:</strong> Používejte výstižné názvy! (<code>vek</code> je lepší než <code>x</code>)
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Datové typy -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Datové typy v Pythonu</h1>
+            <h2>Základní typy dat</h2>
+            
+            <h3>1. Čísla (int, float)</h3>
+            <div class="code-example">
+                <code>cislo = 42</code> &nbsp;&nbsp;&nbsp; # celé číslo (int)<br>
+                <code>pi = 3.14</code> &nbsp;&nbsp;&nbsp; # desetinné číslo (float)
+            </div>
+
+            <h3>2. Textové řetězce (str)</h3>
+            <div class="code-example">
+                <code>jmeno = "Anna"</code><br>
+                <code>zprava = 'Ahoj světe!'</code>
+            </div>
+
+            <h3>Operace s daty:</h3>
+            <div class="code-example">
+                <code>vysledek = 5 + 3</code> &nbsp;&nbsp;&nbsp; # sčítání<br>
+                <code>pozdrav = "Ahoj " + "světe"</code> &nbsp;&nbsp;&nbsp; # spojování textu
+            </div>
+
+            <div class="exercise">
+                <h3>Vyzkoušejte si:</h3>
+                <p>Vytvořte proměnné s vaším jménem a věkem a vypište je pomocí <code>print()</code>!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Co je algoritmus? -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Co je to algoritmus?</h1>
+            <h2>Postup řešení problému</h2>
+            <p><strong>Algoritmus</strong> = přesný postup (návod), jak vyřešit daný problém.</p>
+            
+            <h3>Vlastnosti algoritmu:</h3>
+            <ul>
+                <li><strong>Konečnost</strong> – musí skončit v konečném čase</li>
+                <li><strong>Jednoznačnost</strong> – každý krok musí být jasně definován</li>
+                <li><strong>Vstup</strong> – má nějaká vstupní data (nebo žádná)</li>
+                <li><strong>Výstup</strong> – produkuje výsledek</li>
+                <li><strong>Efektivnost</strong> – měl by být co nejrychlejší</li>
+            </ul>
+
+            <div class="note">
+                <strong>Každodenní příklad:</strong> Recept na vaření je algoritmus!
+                <ol>
+                    <li>Vezměte 2 vejce</li>
+                    <li>Rozklepněte je do mísy</li>
+                    <li>Rozšlehejte</li>
+                    <li>...</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Cvičení - Algoritmy -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Cvičení: Algoritmy v praxi</h1>
+            <h2>Pracovní list</h2>
+            
+            <div class="exercise">
+                <h3>Úkol 1: Napište algoritmus</h3>
+                <p>Napište přesný postup (algoritmus) pro:</p>
+                <ul>
+                    <li>Uvařit čaj</li>
+                    <li>Najít slovo ve slovníku</li>
+                    <li>Spočítat průměr tří čísel</li>
+                </ul>
+            </div>
+
+            <div class="exercise">
+                <h3>Úkol 2: Identifikujte chyby</h3>
+                <p>V následujícím "algoritmu" na výměnu dvou proměnných najděte chybu:</p>
+                <div class="code-example">
+                    <code>a = 5</code><br>
+                    <code>b = 10</code><br>
+                    <code>a = b</code> &nbsp;&nbsp;&nbsp; # Co se stane? Ztratíme původní hodnotu a!<br>
+                    <code>b = a</code>
+                </div>
+            </div>
+
+            <div class="note">
+                <strong>Čas:</strong> 15 minut na práci v pracovním listě
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: II. Hodina - Úvod -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>II. HODINA</h1>
+            <h2>Osnova</h2>
+            <ul>
+                <li><span class="time-marker">(10m)</span> Parametrizace vstupu – <code>input()</code></li>
+                <li><span class="time-marker">(10m)</span> Podmíněné skoky – <code>if</code></li>
+                <li><span class="time-marker">(20m)</span> Seznamy a cykly – <code>[]</code> a <code>for</code></li>
+                <li><span class="time-marker">(5m)</span> Reflexe</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 15: Funkce input() -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Funkce input()</h1>
+            <h2>Vstup od uživatele</h2>
+            <p><code>input()</code> = funkce, která umožňuje uživateli zadat data do programu.</p>
+            
+            <div class="code-example">
+                <code>jmeno = input("Jak se jmenujes? ")</code><br>
+                <code>print("Ahoj, " + jmeno + "!")</code>
+            </div>
+
+            <div class="note">
+                <strong>Důležité:</strong> <code>input()</code> vždy vrací text (string)!
+            </div>
+
+            <h3>Převod na číslo:</h3>
+            <div class="code-example">
+                <code>vek = input("Kolik je ti let? ")</code><br>
+                <code>vek = int(vek)</code> &nbsp;&nbsp;&nbsp; # převod na celé číslo<br>
+                <code>print("Za rok ti bude: " + str(vek + 1))</code>
+            </div>
+
+            <p><code>int()</code> = převede text na celé číslo<br>
+            <code>str()</code> = převede číslo na text</p>
+        </div>
+    </div>
+
+    <!-- Slide 16: Program - Sčítání -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Program: Sčítání dvou čísel</h1>
+            
+            <div class="exercise">
+                <h3>Úkol:</h3>
+                <p>Napište program, který:</p>
+                <ol>
+                    <li>Zeptá se uživatele na první číslo</li>
+                    <li>Zeptá se na druhé číslo</li>
+                    <li>Sečte je a vypíše výsledek</li>
+                </ol>
+            </div>
+
+            <h3>Řešení:</h3>
+            <div class="code-example">
+                <code>cislo1 = input("Zadej první číslo: ")</code><br>
+                <code>cislo2 = input("Zadej druhé číslo: ")</code><br>
+                <code></code><br>
+                <code>cislo1 = int(cislo1)</code><br>
+                <code>cislo2 = int(cislo2)</code><br>
+                <code></code><br>
+                <code>soucet = cislo1 + cislo2</code><br>
+                <code>print("Součet je: " + str(soucet))</code>
+            </div>
+
+            <div class="note">
+                <strong>Pozor!</strong> Zapomeňte-li převést na <code>int()</code>, Python spojí texty místo sčítání!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 17: Podmínky - if -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Podmíněné skoky</h1>
+            <h2>Příkaz if</h2>
+            <p>Podmínky umožňují programu <strong>rozhodovat se</strong> podle situace.</p>
+            
+            <div class="code-example">
+                <code>vek = int(input("Kolik je ti let? "))</code><br>
+                <code></code><br>
+                <code>if vek >= 18:</code><br>
+                <code>&nbsp;&nbsp;&nbsp;&nbsp;print("Jsi plnoletý!")</code><br>
+                <code>else:</code><br>
+                <code>&nbsp;&nbsp;&nbsp;&nbsp;print("Nejsi ještě plnoletý.")</code>
+            </div>
+
+            <h3>Důležité:</h3>
+            <ul>
+                <li><strong>Odsazení</strong> (indent) je v Pythonu povinné!</li>
+                <li>Použijte 4 mezery nebo Tab</li>
+                <li><code>:</code> na konci <code>if</code> a <code>else</code></li>
+            </ul>
+
+            <h3>Porovnávací operátory:</h3>
+            <ul>
+                <li><code>==</code> – rovná se</li>
+                <li><code>!=</code> – nerovná se</li>
+                <li><code>&lt;</code> – menší než</li>
+                <li><code>&gt;</code> – větší než</li>
+                <li><code>&lt;=</code> – menší nebo rovno</li>
+                <li><code>&gt;=</code> – větší nebo rovno</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 18: Program - Verifikace věku -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Program: Verifikace věku</h1>
+            
+            <div class="exercise">
+                <h3>Úkol:</h3>
+                <p>Napište program, který:</p>
+                <ol>
+                    <li>Zeptá se uživatele na věk</li>
+                    <li>Pokud je věk ≥ 18, vypíše "Můžeš řídit auto"</li>
+                    <li>Pokud je věk &lt; 18, vypíše "Ještě nemůžeš řídit auto"</li>
+                    <li>BONUS: Přidejte kategorii pro věk &lt; 15 (ještě ani na moped)</li>
+                </ol>
+            </div>
+
+            <h3>Řešení s elif (else if):</h3>
+            <div class="code-example">
+                <code>vek = int(input("Kolik je ti let? "))</code><br>
+                <code></code><br>
+                <code>if vek >= 18:</code><br>
+                <code>&nbsp;&nbsp;&nbsp;&nbsp;print("Můžeš řídit auto")</code><br>
+                <code>elif vek >= 15:</code><br>
+                <code>&nbsp;&nbsp;&nbsp;&nbsp;print("Můžeš řídit moped")</code><br>
+                <code>else:</code><br>
+                <code>&nbsp;&nbsp;&nbsp;&nbsp;print("Ještě nemůžeš řídit")</code>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 19: Seznamy (Lists) -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Seznamy (Lists)</h1>
+            <h2>Ukládání více hodnot</h2>
+            <p><strong>Seznam</strong> = datová struktura pro uložení více hodnot pod jedním názvem.</p>
+            
+            <div class="code-example">
+                <code>znamky = [1, 2, 1, 3, 2]</code><br>
+                <code>jmena = ["Anna", "Petr", "Jana"]</code><br>
+                <code>mix = [1, "ahoj", 3.14, True]</code> &nbsp;&nbsp;&nbsp; # může obsahovat různé typy
+            </div>
+
+            <h3>Přístup k prvkům:</h3>
+            <div class="code-example">
+                <code>znamky = [1, 2, 1, 3, 2]</code><br>
+                <code>print(znamky[0])</code> &nbsp;&nbsp;&nbsp; # vypíše: 1 (první prvek má index 0!)<br>
+                <code>print(znamky[2])</code> &nbsp;&nbsp;&nbsp; # vypíše: 1<br>
+                <code>print(znamky[-1])</code> &nbsp;&nbsp;&nbsp; # vypíše: 2 (poslední prvek)
+            </div>
+
+            <div class="note">
+                <strong>Důležité:</strong> V Pythonu (a většině jazyků) se indexuje od 0!
+            </div>
+
+            <h3>Užitečné funkce:</h3>
+            <ul>
+                <li><code>len(seznam)</code> – délka seznamu</li>
+                <li><code>seznam.append(hodnota)</code> – přidání prvku na konec</li>
+                <li><code>max(seznam)</code> – největší hodnota</li>
+                <li><code>min(seznam)</code> – nejmenší hodnota</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 20: For cyklus -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>For cyklus</h1>
+            <h2>Procházení seznamů</h2>
+            <p><strong>For cyklus</strong> = opakování příkazů pro každý prvek seznamu.</p>
+            
+            <div class="code-example">
+                <code>znamky = [1, 2, 1, 3, 2]</code><br>
+                <code></code><br>
+                <code>for znamka in znamky:</code><br>
+                <code>&nbsp;&nbsp;&nbsp;&nbsp;print(znamka)</code>
+            </div>
+
+            <p>Tento program vypíše každou známku na samostatný řádek.</p>
+
+            <h3>Další příklady:</h3>
+            <div class="code-example">
+                <code>jmena = ["Anna", "Petr", "Jana"]</code><br>
+                <code></code><br>
+                <code>for jmeno in jmena:</code><br>
+                <code>&nbsp;&nbsp;&nbsp;&nbsp;print("Ahoj, " + jmeno + "!")</code>
+            </div>
+
+            <div class="note">
+                <strong>Tip:</strong> Název proměnné v cyklu (<code>znamka</code>, <code>jmeno</code>) si můžete zvolit sami!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 21: Program - Známky -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Finální program: Analýza známek</h1>
+            
+            <div class="exercise">
+                <h3>Úkol:</h3>
+                <p>Napište program, který:</p>
+                <ol>
+                    <li>Má seznam známek: <code>[1, 2, 3, 1, 2, 4, 1, 3]</code></li>
+                    <li>Najde a vypíše nejlepší známku (nejmenší číslo)</li>
+                    <li>Najde a vypíše nejhorší známku (největší číslo)</li>
+                    <li>BONUS: Spočítá průměr</li>
+                </ol>
+            </div>
+
+            <h3>Řešení:</h3>
+            <div class="code-example">
+                <code>znamky = [1, 2, 3, 1, 2, 4, 1, 3]</code><br>
+                <code></code><br>
+                <code>nejlepsi = min(znamky)</code><br>
+                <code>nejhorsi = max(znamky)</code><br>
+                <code></code><br>
+                <code>print("Nejlepší známka: " + str(nejlepsi))</code><br>
+                <code>print("Nejhorší známka: " + str(nejhorsi))</code><br>
+                <code></code><br>
+                <code># Bonus - průměr:</code><br>
+                <code>soucet = sum(znamky)</code><br>
+                <code>prumer = soucet / len(znamky)</code><br>
+                <code>print("Průměr: " + str(prumer))</code>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 22: Reflexe -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>Reflexe</h1>
+            <h2>Zopakujme si, co jsme se naučili</h2>
+            
+            <div class="exercise">
+                <h3>Otázky:</h3>
+                <ol>
+                    <li>
+                        <strong>Je Python kompilovaný nebo interpretovaný jazyk?</strong>
+                        <div class="note" style="margin-top: 0.5rem;">
+                            Odpověď: Interpretovaný
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Co to znamená, že je interpretovaný?</strong>
+                        <div class="note" style="margin-top: 0.5rem;">
+                            Odpověď: Kód se vykonává řádek po řádku, bez předchozího překladu do strojového kódu
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Jak lze v Pythonu parametrizovat vstup programu?</strong>
+                        <div class="note" style="margin-top: 0.5rem;">
+                            Odpověď: Pomocí funkce <code>input()</code>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>K čemu slouží <code>if</code>?</strong>
+                        <div class="note" style="margin-top: 0.5rem;">
+                            Odpověď: K podmíněným skokům – rozhodování v programu
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Co je to seznam (list)?</strong>
+                        <div class="note" style="margin-top: 0.5rem;">
+                            Odpověď: Datová struktura pro uložení více hodnot
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 23: Závěr -->
+    <div class="slide">
+        <div class="slide-content centered-title">
+            <h1>Konec lekce</h1>
+            <p style="font-size: 1.5rem; margin-top: 2rem;">Děkuji za pozornost!</p>
+            
+            <div style="margin-top: 3rem; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <h2>Co jsme se naučili:</h2>
+                <ul>
+                    <li>✓ Rozdíl mezi kompilátory a interprety</li>
+                    <li>✓ První program v Pythonu</li>
+                    <li>✓ Proměnné a datové typy</li>
+                    <li>✓ Co je to algoritmus</li>
+                    <li>✓ Vstup od uživatele (<code>input()</code>)</li>
+                    <li>✓ Podmínky (<code>if</code>)</li>
+                    <li>✓ Seznamy a cykly (<code>for</code>)</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 3rem; font-style: italic; color: #888;">
+                Domácí úkol: Experimentujte s programy, které jsme dnes napsali!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            // Scroll to top of new slide
+            slides[currentSlide].scrollTop = 0;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide();
+            }
+        }
+    </script>
+</body>
+</html>
